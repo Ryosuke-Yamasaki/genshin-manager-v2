@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import { cookies } from "next/headers";
-import { createClient } from "@/lib/supabase/server";
+import NavBar from "@/components/header/navbar";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -19,15 +18,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
-
-  const { data, error } = await supabase.auth.getUser();
-  console.log(data);
-
   return (
     <html lang="en">
-      <body className={fontSans.variable}>{children}</body>
+      <body className={fontSans.variable}>
+        <div className="flex min-h-screen flex-col">
+          <NavBar />
+          <div>{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
