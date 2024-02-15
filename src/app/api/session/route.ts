@@ -7,7 +7,6 @@ export const GET = async (req: Request, res: NextResponse) => {
   const supabase = createClient(cookieStore);
 
   const { data, error } = await supabase.auth.getUser();
-  console.log(data);
   try {
     return NextResponse.json({ data });
   } catch {

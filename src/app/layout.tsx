@@ -23,7 +23,7 @@ export default async function RootLayout({
       <body className={fontSans.variable}>
         <div className="flex min-h-screen flex-col">
           <NavBar />
-          <div>{children}</div>
+          {children}
         </div>
       </body>
     </html>
