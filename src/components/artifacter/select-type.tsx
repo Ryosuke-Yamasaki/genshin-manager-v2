@@ -4,7 +4,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import useArtifactTypes from "@/hooks/useArtifactTypes";
 import { SelectArtifactTypeProps } from "@/lib/interface";
 
-const SelectArtifactType: React.FC<SelectArtifactTypeProps> = ({ typeId }) => {
+const SelectArtifactType: React.FC<SelectArtifactTypeProps> = ({
+  typeId,
+  setId,
+}) => {
   const types = useArtifactTypes();
 
   return (
@@ -23,7 +26,9 @@ const SelectArtifactType: React.FC<SelectArtifactTypeProps> = ({ typeId }) => {
             key={type.id}
             className="px-2"
           >
-            <Link href={type.id.toString()}>{type.japanese}</Link>
+            <Link href={`../${type.id.toString()}/${setId}`}>
+              {type.japanese}
+            </Link>
           </Button>
         ))}
       </PopoverContent>

@@ -60,7 +60,10 @@ const PostArtifactPage = ({
         <div className="bg-gradient-to-tl from-[#e2ac53] to-[#6b5453]">
           <div className="flex items-center justify-center text-white">
             <div className="space-y-2">
-              <SelectArtifactType typeId={Number(params.typeId)} />
+              <SelectArtifactType
+                typeId={Number(params.typeId)}
+                setId={params.setId}
+              />
               <SelectArtifactMainStat typeId={params.typeId} form={form} />
               <div className="text-2xl">
                 {mainStatValue?.star5! < 1

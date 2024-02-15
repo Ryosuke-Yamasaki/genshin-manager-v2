@@ -18,6 +18,7 @@ interface ArtifactIcons {
 
 interface SelectArtifactTypeProps {
   typeId: number;
+  setId: string;
 }
 
 interface SelectArtifactMainStatProps {
