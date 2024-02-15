@@ -2,12 +2,12 @@ import { createClient } from "./client";
 
 const supabase = createClient();
 
-export const getArtifactTypes = async () => {
+const getArtifactTypes = async () => {
   const types = await supabase.from("ArtifactTypes").select();
   return types;
 };
 
-export const getArtifactMainStatById = async (id: number) => {
+const getArtifactMainStatById = async (id: number) => {
   const mainStats = await supabase
     .from("ArtifactMainStats")
     .select()
@@ -16,7 +16,23 @@ export const getArtifactMainStatById = async (id: number) => {
   return mainStats;
 };
 
-export const getArtifactIcons = async () => {
+const getArtifactIcons = async () => {
   const icons = await supabase.from("ArtifactIcons").select();
   return icons;
+};
+
+const getArtifactById = async (id: number) => {
+  const artifact = await supabase
+    .from("Artifacts")
+    .select("*,ArtifactSets(*)")
+    .eq("id", id)
+    .single();
+  return artifact;
+};
+
+export {
+  getArtifactTypes,
+  getArtifactMainStatById,
+  getArtifactIcons,
+  getArtifactById,
 };

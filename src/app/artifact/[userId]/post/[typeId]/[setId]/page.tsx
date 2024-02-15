@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import useArtifactById from "@/hooks/useArtifactById";
 
 const mainStatsDefaultValues = [
   { typeId: "1", value: 101 },
@@ -49,12 +50,15 @@ const PostArtifactPage = ({
 
   const mainStatValue = useArtifactMainStatById(form);
 
+  const artifactId = params.typeId + params.setId;
+  const artifact = useArtifactById(Number(artifactId));
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md">
         <div className="bg-[#bd6833] p-0.5">
           <div className="border-2 border-[#9f5427] text-white">
-            <div className="ml-2">名前</div>
+            <div className="ml-2">{artifact?.name}</div>
           </div>
         </div>
         <div className="bg-gradient-to-tl from-[#e2ac53] to-[#6b5453]">
@@ -92,10 +96,14 @@ const PostArtifactPage = ({
             <li>サブオプション３</li>
             <li>サブオプション４</li>
           </ul>
-          <div className="text-[#64af5d]">セット効果名</div>
+          <div className="text-[#64af5d]">{artifact?.ArtifactSets.name}</div>
           <ul className="list-inside list-disc">
-            <li className="text-[#727781]">２セット効果</li>
-            <li className="text-[#727781]">４セット効果</li>
+            <li className="text-[#727781]">
+              {artifact?.ArtifactSets.twoPieceBonuses}
+            </li>
+            <li className="text-[#727781]">
+              {artifact?.ArtifactSets.fourPieceBonuses}
+            </li>
           </ul>
         </div>
       </form>

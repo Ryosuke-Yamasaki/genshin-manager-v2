@@ -16,6 +16,21 @@ interface ArtifactIcons {
   url: string;
 }
 
+interface Artifacts {
+  id: number;
+  name: string;
+  description: string;
+  typeId: number;
+  setId: number;
+  star: number;
+  ArtifactSets: {
+    id: number;
+    name: string;
+    twoPieceBonuses: string;
+    fourPieceBonuses: string;
+  };
+}
+
 interface SelectArtifactTypeProps {
   typeId: number;
   setId: string;
@@ -41,6 +56,7 @@ export type {
   ArtifactTypes,
   ArtifactMainStats,
   ArtifactIcons,
+  Artifacts,
   SelectArtifactTypeProps,
   SelectArtifactMainStatProps,
   SelectArtifactProps,
