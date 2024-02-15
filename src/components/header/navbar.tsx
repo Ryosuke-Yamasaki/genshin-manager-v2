@@ -33,7 +33,7 @@ const NavBar = async () => {
         <LoginWithGoogleButton />
       ) : (
         <form action={Logout}>
-          <Button variant="outline" size="free" type="submit">
+          <Button variant="outline" type="submit">
             ログアウト
           </Button>
         </form>
