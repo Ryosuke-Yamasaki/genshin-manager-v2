@@ -15,3 +15,8 @@ export const getArtifactMainStatById = async (id: number) => {
     .single();
   return mainStats;
 };
+
+export const getArtifactIcons = async () => {
+  const icons = await supabase.from("ArtifactIcons").select();
+  return icons;
+};

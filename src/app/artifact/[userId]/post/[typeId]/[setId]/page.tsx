@@ -24,7 +24,7 @@ const mainStatsDefaultValues = [
 const PostArtifactPage = ({
   params,
 }: {
-  params: { userId: string; typeId: string };
+  params: { userId: string; typeId: string; setId: string };
 }) => {
   const mainStatId = mainStatsDefaultValues.find(
     (stat) => stat.typeId == params.typeId
@@ -34,7 +34,7 @@ const PostArtifactPage = ({
     resolver: zodResolver(postArtifacterSchema),
     defaultValues: {
       typeId: Number(params.typeId),
-      setId: 501,
+      setId: Number(params.setId),
       mainStatId,
       subOptions: [
         { statId: 600, value: 3.9 },
@@ -75,7 +75,7 @@ const PostArtifactPage = ({
                 <StarFilledIcon color="#fecc32" />
               </div>
             </div>
-            <SelectArtifact />
+            <SelectArtifact typeId={params.typeId} setId={params.setId} />
           </div>
         </div>
         <div className="h-1 bg-gradient-to-r from-[#816c58] to-[#b79056]" />

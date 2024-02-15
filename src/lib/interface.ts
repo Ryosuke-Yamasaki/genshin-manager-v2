@@ -25,10 +25,23 @@ interface SelectArtifactMainStatProps {
   form: any;
 }
 
+interface SelectArtifactProps {
+  typeId: string;
+  setId: string;
+}
+
+interface SelectDialogProps {
+  children: React.ReactNode;
+  headerTitle: string;
+  icon: { artifactId: number; url: string };
+}
+
 export type {
   ArtifactTypes,
   ArtifactMainStats,
   ArtifactIcons,
   SelectArtifactTypeProps,
   SelectArtifactMainStatProps,
+  SelectArtifactProps,
+  SelectDialogProps,
 };
