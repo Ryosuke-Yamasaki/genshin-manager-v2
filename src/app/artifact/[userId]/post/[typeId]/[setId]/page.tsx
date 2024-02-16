@@ -15,6 +15,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import useArtifactById from "@/hooks/useArtifactById";
 import { FormatPercent } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { PostArtifacters } from "@/actions/postArtifacters";
 
 const mainStatsDefaultValues = [
   { typeId: "1", value: 101 },
@@ -36,20 +39,24 @@ const PostArtifactPage = ({
   const form = useForm<z.infer<typeof postArtifacterSchema>>({
     resolver: zodResolver(postArtifacterSchema),
     defaultValues: {
+      userId: params.userId,
       typeId: Number(params.typeId),
       setId: Number(params.setId),
+      artifactId: Number(params.typeId + params.setId),
       mainStatId,
       subOptions: [
-        { statId: 600, value: 3.9 },
-        { statId: 700, value: 7.8 },
-        { statId: 203, value: 0 },
-        { statId: 500, value: 0 },
+        { statId: "600", value: "3.9" },
+        { statId: "700", value: "7.8" },
+        { statId: "203", value: "5.8" },
+        { statId: "500", value: "6.5" },
       ],
     },
   });
 
+  const router = useRouter();
+
   const onSubmit = (values: z.infer<typeof postArtifacterSchema>) => {
-    console.log(values);
+    PostArtifacters(values);
   };
 
   const mainStatValue = useArtifactMainStatById(form);
@@ -91,8 +98,16 @@ const PostArtifactPage = ({
         </div>
         <div className="h-1 bg-gradient-to-r from-[#816c58] to-[#b79056]" />
         <div className="bg-[#ece5d7] px-4 py-2 space-y-2">
-          <div className="flex justify-between">
-            <Badge className="text-md">+20</Badge>
+          <div className="flex items-center justify-between">
+            <Badge className="text-base">+20</Badge>
+            <Button
+              variant="outline"
+              size="free"
+              type="submit"
+              className="border-muted-foreground text-base"
+            >
+              登録
+            </Button>
           </div>
           <SubOptionForm form={form} />
           <div className="text-[#64af5d]">{artifact?.ArtifactSets.name}</div>

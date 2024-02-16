@@ -47,27 +47,7 @@ interface SelectArtifactTypeProps {
 
 interface SelectArtifactMainStatProps {
   typeId: string;
-  form: UseFormReturn<
-    {
-      typeId: number;
-      setId: number;
-      mainStatId: number;
-      subOptions: {
-        value: number;
-        statId: number;
-      }[];
-    },
-    any,
-    {
-      typeId: number;
-      setId: number;
-      mainStatId: number;
-      subOptions: {
-        value: number;
-        statId: number;
-      }[];
-    }
-  >;
+  form: any;
 }
 
 interface SelectArtifactProps {
@@ -82,27 +62,7 @@ interface SelectDialogProps {
 }
 
 interface SubOptionFormProps {
-  form: UseFormReturn<
-    {
-      typeId: number;
-      setId: number;
-      mainStatId: number;
-      subOptions: {
-        value: number;
-        statId: number;
-      }[];
-    },
-    any,
-    {
-      typeId: number;
-      setId: number;
-      mainStatId: number;
-      subOptions: {
-        value: number;
-        statId: number;
-      }[];
-    }
-  >;
+  form: any;
 }
 
 export type {

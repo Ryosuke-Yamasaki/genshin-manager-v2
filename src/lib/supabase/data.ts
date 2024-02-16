@@ -30,7 +30,7 @@ const getArtifactById = async (id: number) => {
   return artifact;
 };
 
-const getStatById = async (id: number) => {
+const getStatById = async (id: string) => {
   const stats = await supabase.from("Stats").select().eq("id", id).single();
   return stats;
 };

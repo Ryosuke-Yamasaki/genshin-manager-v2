@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SubOptionFormProps } from "@/lib/interface";
-import { FormControl, FormField, FormItem } from "../ui/form";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { useFieldArray } from "react-hook-form";
 import {
@@ -91,13 +91,13 @@ const SubOptionForm: React.FC<SubOptionFormProps> = ({ form }) => {
                   <FormControl>
                     <Input
                       {...field}
-                      inputMode="numeric"
                       className="w-10 border-muted-foreground"
                     />
                   </FormControl>
                   {!IntStatId(
                     form.watch(`subOptions.${index}.statId`).toString()
                   ) && <div>%</div>}
+                  <FormMessage />
                 </FormItem>
               )}
             />
