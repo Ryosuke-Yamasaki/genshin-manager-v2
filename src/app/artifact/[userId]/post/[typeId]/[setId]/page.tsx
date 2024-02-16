@@ -1,18 +1,20 @@
 "use client";
 
 import useArtifactMainStatById from "@/hooks/useArtifactMainStatById";
+import SubOptionForm from "@/components/artifacter/sub-option-form";
 import SelectArtifact from "@/components/artifacter/select-artifact";
 import SelectArtifactMainStat from "@/components/artifacter/select-main-stat";
 import SelectArtifactType from "@/components/artifacter/select-type";
 import { Badge } from "@/components/ui/badge";
 import { Form } from "@/components/ui/form";
-import { FormatPercent } from "@/lib/format";
+
 import { postArtifacterSchema } from "@/lib/zodschema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import useArtifactById from "@/hooks/useArtifactById";
+import { FormatPercent } from "@/lib/utils";
 
 const mainStatsDefaultValues = [
   { typeId: "1", value: 101 },
@@ -40,6 +42,8 @@ const PostArtifactPage = ({
       subOptions: [
         { statId: 600, value: 3.9 },
         { statId: 700, value: 7.8 },
+        { statId: 203, value: 0 },
+        { statId: 500, value: 0 },
       ],
     },
   });
@@ -55,15 +59,15 @@ const PostArtifactPage = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-[300px]">
         <div className="bg-[#bd6833] p-0.5">
           <div className="border-2 border-[#9f5427] text-white">
             <div className="ml-2">{artifact?.name}</div>
           </div>
         </div>
         <div className="bg-gradient-to-tl from-[#e2ac53] to-[#6b5453]">
-          <div className="flex items-center justify-center text-white">
-            <div className="space-y-2">
+          <div className="flex items-center justify-between text-white">
+            <div className="space-y-2 mx-3">
               <SelectArtifactType
                 typeId={Number(params.typeId)}
                 setId={params.setId}
@@ -86,16 +90,11 @@ const PostArtifactPage = ({
           </div>
         </div>
         <div className="h-1 bg-gradient-to-r from-[#816c58] to-[#b79056]" />
-        <div className="bg-[#ece5d7] px-4 py-2">
+        <div className="bg-[#ece5d7] px-4 py-2 space-y-2">
           <div className="flex justify-between">
             <Badge className="text-md">+20</Badge>
           </div>
-          <ul className="mx-2 mt-2 list-inside list-disc font-semibold text-[#545963]">
-            <li>サブオプション１</li>
-            <li>サブオプション２</li>
-            <li>サブオプション３</li>
-            <li>サブオプション４</li>
-          </ul>
+          <SubOptionForm form={form} />
           <div className="text-[#64af5d]">{artifact?.ArtifactSets.name}</div>
           <ul className="list-inside list-disc">
             <li className="text-[#727781]">

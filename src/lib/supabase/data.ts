@@ -30,9 +30,15 @@ const getArtifactById = async (id: number) => {
   return artifact;
 };
 
+const getStatById = async (id: number) => {
+  const stats = await supabase.from("Stats").select().eq("id", id).single();
+  return stats;
+};
+
 export {
   getArtifactTypes,
   getArtifactMainStatById,
   getArtifactIcons,
   getArtifactById,
+  getStatById,
 };

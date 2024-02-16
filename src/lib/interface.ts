@@ -1,3 +1,5 @@
+import { UseFormReturn } from "react-hook-form";
+
 interface ArtifactTypes {
   id: number;
   japanese: string;
@@ -31,6 +33,13 @@ interface Artifacts {
   };
 }
 
+interface Stats {
+  id: number;
+  japanese: string;
+  english: string;
+  text: string;
+}
+
 interface SelectArtifactTypeProps {
   typeId: number;
   setId: string;
@@ -38,7 +47,27 @@ interface SelectArtifactTypeProps {
 
 interface SelectArtifactMainStatProps {
   typeId: string;
-  form: any;
+  form: UseFormReturn<
+    {
+      typeId: number;
+      setId: number;
+      mainStatId: number;
+      subOptions: {
+        value: number;
+        statId: number;
+      }[];
+    },
+    any,
+    {
+      typeId: number;
+      setId: number;
+      mainStatId: number;
+      subOptions: {
+        value: number;
+        statId: number;
+      }[];
+    }
+  >;
 }
 
 interface SelectArtifactProps {
@@ -52,13 +81,39 @@ interface SelectDialogProps {
   icon: { artifactId: number; url: string };
 }
 
+interface SubOptionFormProps {
+  form: UseFormReturn<
+    {
+      typeId: number;
+      setId: number;
+      mainStatId: number;
+      subOptions: {
+        value: number;
+        statId: number;
+      }[];
+    },
+    any,
+    {
+      typeId: number;
+      setId: number;
+      mainStatId: number;
+      subOptions: {
+        value: number;
+        statId: number;
+      }[];
+    }
+  >;
+}
+
 export type {
   ArtifactTypes,
   ArtifactMainStats,
   ArtifactIcons,
   Artifacts,
+  Stats,
   SelectArtifactTypeProps,
   SelectArtifactMainStatProps,
   SelectArtifactProps,
   SelectDialogProps,
+  SubOptionFormProps,
 };

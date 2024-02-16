@@ -3,18 +3,18 @@ import { getArtifactMainStatById } from "@/lib/supabase/data";
 import { useEffect, useState } from "react";
 
 const useArtifactMainStatById = (form: any) => {
-  const [mainStats, setMainStats] = useState<ArtifactMainStats | null>(null);
+  const [mainStat, setMainStat] = useState<ArtifactMainStats | null>(null);
 
   useEffect(() => {
     const fetchArtifactMainStat = async (id: number) => {
       const { data, error } = await getArtifactMainStatById(id);
       if (error) throw error;
-      setMainStats(data as ArtifactMainStats);
+      setMainStat(data as ArtifactMainStats);
     };
-    fetchArtifactMainStat(form.getValues("mainStatId"));
+    fetchArtifactMainStat(form.watch("mainStatId"));
   }, [form.watch("mainStatId")]);
 
-  return mainStats;
+  return mainStat;
 };
 
 export default useArtifactMainStatById;
