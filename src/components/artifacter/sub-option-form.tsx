@@ -45,10 +45,8 @@ const SubOptionForm: React.FC<SubOptionFormProps> = ({ form }) => {
             <ul className="list-inside list-disc font-semibold text-[#545963]">
               <li>
                 {
-                  useStatById(
-                    form,
-                    form.getValues(`subOptions.${index}.statId`)
-                  )?.text
+                  useStatById(form.getValues(`subOptions.${index}.statId`))
+                    ?.text
                 }
                 +{form.watch(`subOptions.${index}.value`)}
                 {!IntStatId(

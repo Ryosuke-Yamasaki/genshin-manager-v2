@@ -3,7 +3,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { IntStatId } from "@/lib/utils";
 import { postArtifacterSchema } from "@/lib/zodschema";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -40,6 +39,5 @@ export const PostArtifacters = async (
     console.log(error);
   }
 
-  revalidatePath("../../");
   redirect("../../");
 };

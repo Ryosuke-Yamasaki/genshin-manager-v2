@@ -16,8 +16,8 @@ import { z } from "zod";
 import useArtifactById from "@/hooks/useArtifactById";
 import { FormatPercent } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { PostArtifacters } from "@/actions/postArtifacters";
+import { useTransition } from "react";
 
 const mainStatsDefaultValues = [
   { typeId: "1", value: 101 },
@@ -32,6 +32,8 @@ const PostArtifactPage = ({
 }: {
   params: { userId: string; typeId: string; setId: string };
 }) => {
+  const [isPending, startTransition] = useTransition();
+
   const mainStatId = mainStatsDefaultValues.find(
     (stat) => stat.typeId == params.typeId
   )?.value;
@@ -53,10 +55,10 @@ const PostArtifactPage = ({
     },
   });
 
-  const router = useRouter();
-
   const onSubmit = (values: z.infer<typeof postArtifacterSchema>) => {
-    PostArtifacters(values);
+    startTransition(async () => {
+      await PostArtifacters(values);
+    });
   };
 
   const mainStatValue = useArtifactMainStatById(form);
@@ -105,6 +107,7 @@ const PostArtifactPage = ({
               size="free"
               type="submit"
               className="border-muted-foreground text-base"
+              disabled={isPending}
             >
               登録
             </Button>
