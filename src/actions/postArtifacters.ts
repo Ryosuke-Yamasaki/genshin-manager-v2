@@ -3,14 +3,15 @@
 import { createClient } from "@/lib/supabase/server";
 import { IntStatId } from "@/lib/utils";
 import { postArtifacterSchema } from "@/lib/zodschema";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export const PostArtifacters = async (
-  value: z.infer<typeof postArtifacterSchema>
+  values: z.infer<typeof postArtifacterSchema>
 ) => {
-  const { userId, artifactId, typeId, setId, mainStatId, subOptions } = value;
+  const { userId, artifactId, typeId, setId, mainStatId, subOptions } = values;
 
   const scoreMultipliers: { [K: string]: number } = {
     "600": 2,
@@ -27,29 +28,35 @@ export const PostArtifacters = async (
     if (!IntStatId(data.statId.toString()))
       data.value = (Number(data.value) / 100).toFixed(3).toString();
   });
+  console.log(subOptions);
 
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
-  const { error } = await supabase.from("Artifacters").insert({
-    userId,
-    score,
-    artifactId,
-    typeId,
-    setId,
-    mainStatId,
-    sub1StatId: subOptions[0].statId,
-    sub2StatId: subOptions[1].statId,
-    sub3StatId: subOptions[2].statId,
-    sub4StatId: subOptions[3].statId,
-    sub1Number: subOptions[0].value,
-    sub2Number: subOptions[1].value,
-    sub3Number: subOptions[2].value,
-    sub4Number: subOptions[3].value,
+
+  const { data, error } = await supabase
+    .from("Artifacters")
+    .insert({
+      userId,
+      score,
+      artifactId,
+      typeId,
+      setId,
+      mainStatId,
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+
+  subOptions.map(async (subOption) => {
+    const { error } = await supabase.from("ArtifacterSubOptions").insert({
+      artifacterId: data.id,
+      statId: subOption.statId,
+      value: subOption.value,
+    });
+    if (error) throw error;
   });
 
-  if (error) {
-    console.log(error);
-  }
-
+  revalidatePath("../../");
   redirect("../../");
 };

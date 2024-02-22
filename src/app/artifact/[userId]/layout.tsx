@@ -3,5 +3,5 @@ export default async function ArtifacterLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="flex min-h-screen justify-center">{children}</div>;
+  return <div className="flex justify-center py-4">{children}</div>;
 }

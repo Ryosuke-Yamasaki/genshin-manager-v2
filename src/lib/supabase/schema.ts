@@ -12,50 +12,35 @@ export type Database = {
       Artifacters: {
         Row: {
           artifactId: number
-          createdat: string
+          createdAt: string
           id: string
           mainStatId: number
-          sub1Number: number
-          sub1StatId: number
-          sub2Number: number
-          sub2StatId: number
-          sub3Number: number
-          sub3StatId: number
-          sub4Number: number
-          sub4StatId: number
-          updatedat: string
+          score: number
+          setId: number
+          typeId: number
+          updatedAt: string
           userId: string
         }
         Insert: {
           artifactId: number
-          createdat?: string
-          id: string
+          createdAt?: string
+          id?: string
           mainStatId: number
-          sub1Number: number
-          sub1StatId: number
-          sub2Number: number
-          sub2StatId: number
-          sub3Number: number
-          sub3StatId: number
-          sub4Number: number
-          sub4StatId: number
-          updatedat?: string
+          score: number
+          setId: number
+          typeId: number
+          updatedAt?: string
           userId: string
         }
         Update: {
           artifactId?: number
-          createdat?: string
+          createdAt?: string
           id?: string
           mainStatId?: number
-          sub1Number?: number
-          sub1StatId?: number
-          sub2Number?: number
-          sub2StatId?: number
-          sub3Number?: number
-          sub3StatId?: number
-          sub4Number?: number
-          sub4StatId?: number
-          updatedat?: string
+          score?: number
+          setId?: number
+          typeId?: number
+          updatedAt?: string
           userId?: string
         }
         Relationships: [
@@ -74,31 +59,17 @@ export type Database = {
             referencedColumns: ["statId"]
           },
           {
-            foreignKeyName: "public_artifacters_sub1statid_fkey"
-            columns: ["sub1StatId"]
+            foreignKeyName: "public_artifacters_setid_fkey"
+            columns: ["setId"]
             isOneToOne: false
-            referencedRelation: "Stats"
+            referencedRelation: "ArtifactSets"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "public_artifacters_sub2statid_fkey"
-            columns: ["sub2StatId"]
+            foreignKeyName: "public_artifacters_typeid_fkey"
+            columns: ["typeId"]
             isOneToOne: false
-            referencedRelation: "Stats"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_artifacters_sub3statid_fkey"
-            columns: ["sub3StatId"]
-            isOneToOne: false
-            referencedRelation: "Stats"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_artifacters_sub4statid_fkey"
-            columns: ["sub4StatId"]
-            isOneToOne: false
-            referencedRelation: "Stats"
+            referencedRelation: "ArtifactTypes"
             referencedColumns: ["id"]
           },
           {
@@ -106,6 +77,39 @@ export type Database = {
             columns: ["userId"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      ArtifacterSubOptions: {
+        Row: {
+          artifacterId: string
+          statId: number
+          value: number
+        }
+        Insert: {
+          artifacterId: string
+          statId: number
+          value: number
+        }
+        Update: {
+          artifacterId?: string
+          statId?: number
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_ArtifacterSubOptions_artifacterId_fkey"
+            columns: ["artifacterId"]
+            isOneToOne: true
+            referencedRelation: "Artifacters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_ArtifacterSubOptions_statId_fkey"
+            columns: ["statId"]
+            isOneToOne: false
+            referencedRelation: "Stats"
             referencedColumns: ["id"]
           }
         ]

@@ -65,6 +65,19 @@ interface SubOptionFormProps {
   form: any;
 }
 
+interface Artifacter {
+  id: string;
+  score: number;
+  artifactId: number;
+  typeId: number;
+  setId: number;
+  mainStatId: number;
+  createdAt: string;
+  ArtifacterSubOptions: { statId: number; value: number }[];
+  ArtifactTypes: { id: number; japanese: string };
+  ArtifactSets: { id: number; text: string };
+}
+
 export type {
   ArtifactTypes,
   ArtifactMainStats,
@@ -76,4 +89,5 @@ export type {
   SelectArtifactProps,
   SelectDialogProps,
   SubOptionFormProps,
+  Artifacter,
 };
