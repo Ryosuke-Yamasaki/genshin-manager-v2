@@ -3,38 +3,37 @@
 import { Artifacter } from "@/lib/interface";
 import { FormatPercent, IntStatId } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
-import { DataTableColumnHeader } from "../ui/data-table-column-header";
+import { DataTableColumnHeader } from "./data-table-column-header";
 
 export const columns: ColumnDef<Artifacter>[] = [
   {
-    accessorKey: "ArtifactTypes",
+    id: "ArtifactTypes",
+    accessorFn: (row) => row.ArtifactTypes.japanese,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="部位" />
     ),
-    cell: ({ row }) => {
-      const type: { id: number; japanese: string } =
-        row.getValue("ArtifactTypes");
-      return <div>{type.japanese}</div>;
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
     },
   },
   {
-    accessorKey: "ArtifactSets",
+    id: "ArtifactSets",
+    accessorFn: (row) => row.ArtifactSets.name,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="セット効果" />
     ),
-    cell: ({ row }) => {
-      const set: { id: number; name: string } = row.getValue("ArtifactSets");
-      return <div>{set.name}</div>;
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
     },
   },
   {
-    accessorKey: "Stats",
+    id: "Stats",
+    accessorFn: (row) => row.Stats.japanese,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="メインオプション" />
+      <DataTableColumnHeader column={column} title="メインステータス" />
     ),
-    cell: ({ row }) => {
-      const mainStat: { id: number; text: string } = row.getValue("Stats");
-      return <div>{mainStat.text}</div>;
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
     },
   },
   {

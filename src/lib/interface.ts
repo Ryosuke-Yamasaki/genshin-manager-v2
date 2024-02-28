@@ -1,16 +1,21 @@
-import { UseFormReturn } from "react-hook-form";
-
 interface ArtifactTypes {
   id: number;
   japanese: string;
   english: string;
 }
 
+interface ArtifactSets {
+  id: number;
+  name: string;
+  twoPieceBonuses: string;
+  fourPieceBonuses: string;
+}
+
 interface ArtifactMainStats {
   statId: number;
   star4: number;
   star5: number;
-  Stats: { id: number; japanese: string; english: string; text: string };
+  Stats: Stats;
 }
 
 interface ArtifactIcons {
@@ -25,12 +30,7 @@ interface Artifacts {
   typeId: number;
   setId: number;
   star: number;
-  ArtifactSets: {
-    id: number;
-    name: string;
-    twoPieceBonuses: string;
-    fourPieceBonuses: string;
-  };
+  ArtifactSets: ArtifactSets;
 }
 
 interface Stats {
@@ -74,12 +74,14 @@ interface Artifacter {
   mainStatId: number;
   createdAt: string;
   ArtifacterSubOptions: { statId: number; value: number }[];
-  ArtifactTypes: { id: number; japanese: string };
-  ArtifactSets: { id: number; text: string };
+  ArtifactTypes: ArtifactTypes;
+  ArtifactSets: ArtifactSets;
+  Stats: Stats;
 }
 
 export type {
   ArtifactTypes,
+  ArtifactSets,
   ArtifactMainStats,
   ArtifactIcons,
   Artifacts,

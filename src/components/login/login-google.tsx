@@ -18,7 +18,7 @@ const LoginWithGoogleButton = () => {
     });
   };
   return (
-    <Button variant="outline" size="free" onClick={LoginWithGoogle}>
+    <Button variant="outline" onClick={LoginWithGoogle}>
       <FcGoogle className="h-5 w-5" />
       <div className="indent-2">Googleアカウント</div>
     </Button>

@@ -4,9 +4,11 @@ import { useState } from "react";
 
 import {
   ColumnDef,
+  ColumnFiltersState,
   SortingState,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
@@ -22,17 +24,28 @@ import {
 } from "@/components/ui/table";
 
 import { DataTablePagination } from "./data-table-pagination";
+import { DataTableToolbar } from "./data-table-toolbar";
+import { ArtifactSets, ArtifactTypes, Stats } from "@/lib/interface";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  types: ArtifactTypes[];
+  sets: ArtifactSets[];
+  mainStats: Stats[];
+  userId: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  types,
+  sets,
+  mainStats,
+  userId,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
     data,
@@ -41,11 +54,20 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
-    state: { sorting },
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    state: { sorting, columnFilters },
   });
 
   return (
     <div className="space-y-4">
+      <DataTableToolbar
+        table={table}
+        types={types}
+        sets={sets}
+        mainStats={mainStats}
+        userId={userId}
+      />
       <div className="rounded-md border">
         <Table>
           <TableHeader>

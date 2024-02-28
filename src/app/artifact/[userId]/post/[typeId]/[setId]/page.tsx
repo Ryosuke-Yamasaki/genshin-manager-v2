@@ -7,7 +7,6 @@ import SelectArtifactMainStat from "@/components/artifacter/select-main-stat";
 import SelectArtifactType from "@/components/artifacter/select-type";
 import { Badge } from "@/components/ui/badge";
 import { Form } from "@/components/ui/form";
-
 import { postArtifacterSchema } from "@/lib/zodschema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { StarFilledIcon } from "@radix-ui/react-icons";

@@ -28,7 +28,6 @@ export const PostArtifacters = async (
     if (!IntStatId(data.statId.toString()))
       data.value = (Number(data.value) / 100).toFixed(3).toString();
   });
-  console.log(subOptions);
 
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
