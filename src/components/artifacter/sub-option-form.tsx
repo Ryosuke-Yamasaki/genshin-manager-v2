@@ -4,10 +4,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SubOptionFormProps } from "@/lib/interface";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
-import { useFieldArray } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import {
   Select,
   SelectContent,
@@ -31,10 +30,12 @@ const subOptions = [
   { id: "700", name: "会心ダメージ" },
 ];
 
-const SubOptionForm: React.FC<SubOptionFormProps> = ({ form }) => {
+const SubOptionForm = () => {
+  const { getValues, watch, control } = useFormContext();
+
   const { fields } = useFieldArray({
     name: "subOptions",
-    control: form.control,
+    control,
   });
 
   return (
@@ -44,20 +45,17 @@ const SubOptionForm: React.FC<SubOptionFormProps> = ({ form }) => {
           <AccordionTrigger>
             <ul className="list-inside list-disc font-semibold text-[#545963]">
               <li>
-                {
-                  useStatById(form.getValues(`subOptions.${index}.statId`))
-                    ?.text
-                }
-                +{form.watch(`subOptions.${index}.value`)}
-                {!IntStatId(
-                  form.watch(`subOptions.${index}.statId`).toString()
-                ) && <>%</>}
+                {useStatById(getValues(`subOptions.${index}.statId`))?.text}+
+                {watch(`subOptions.${index}.value`)}
+                {!IntStatId(watch(`subOptions.${index}.statId`).toString()) && (
+                  <>%</>
+                )}
               </li>
             </ul>
           </AccordionTrigger>
           <AccordionContent className="flex items-center justify-between px-10">
             <FormField
-              control={form.control}
+              control={control}
               name={`subOptions.${index}.statId`}
               render={({ field }) => (
                 <FormItem>
@@ -82,7 +80,7 @@ const SubOptionForm: React.FC<SubOptionFormProps> = ({ form }) => {
               )}
             />
             <FormField
-              control={form.control}
+              control={control}
               name={`subOptions.${index}.value`}
               render={({ field }) => (
                 <FormItem className="flex items-center space-y-0 space-x-1">
@@ -93,7 +91,7 @@ const SubOptionForm: React.FC<SubOptionFormProps> = ({ form }) => {
                     />
                   </FormControl>
                   {!IntStatId(
-                    form.watch(`subOptions.${index}.statId`).toString()
+                    watch(`subOptions.${index}.statId`).toString()
                   ) && <div>%</div>}
                   <FormMessage />
                 </FormItem>

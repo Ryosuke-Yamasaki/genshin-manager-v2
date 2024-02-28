@@ -7,14 +7,16 @@ import {
   SelectTrigger2,
 } from "../ui/select";
 import { SelectValue } from "@radix-ui/react-select";
+import { useFormContext } from "react-hook-form";
 
 const SelectArtifactMainStat: React.FC<SelectArtifactMainStatProps> = ({
   typeId,
-  form,
 }) => {
+  const { control } = useFormContext();
+
   return (
     <FormField
-      control={form.control}
+      control={control}
       name="mainStatId"
       render={({ field }) => (
         <FormItem>

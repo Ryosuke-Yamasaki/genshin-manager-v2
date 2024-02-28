@@ -1,15 +1,13 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import useArtifactTypes from "@/hooks/useArtifactTypes";
 import { SelectArtifactTypeProps } from "@/lib/interface";
 
 const SelectArtifactType: React.FC<SelectArtifactTypeProps> = ({
   typeId,
   setId,
+  types,
 }) => {
-  const types = useArtifactTypes();
-
   return (
     <Popover>
       <PopoverTrigger asChild>

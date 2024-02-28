@@ -1,18 +1,16 @@
 import { SelectArtifactProps } from "@/lib/interface";
-import useArtifactIcons from "@/hooks/useArtifactIcons";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import SelectDialog from "../ui/select-dialog";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
-const SelectArtifact: React.FC<SelectArtifactProps> = ({ typeId, setId }) => {
-  const icons = useArtifactIcons();
-  const icon = icons?.find(
-    (icon) => icon.artifactId.toString() === typeId + setId
-  );
-
+const SelectArtifact: React.FC<SelectArtifactProps> = ({
+  typeId,
+  icons,
+  icon,
+}) => {
   return (
-    <SelectDialog headerTitle="聖遺物の選択" icon={icon!}>
+    <SelectDialog headerTitle="聖遺物の選択" icon={icon}>
       {icons
         ?.filter((icon) => icon.artifactId.toString()[0] == typeId)
         .map((icon) => (

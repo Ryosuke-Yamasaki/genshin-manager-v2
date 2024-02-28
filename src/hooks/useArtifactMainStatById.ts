@@ -2,7 +2,7 @@ import { ArtifactMainStats } from "@/lib/interface";
 import { getArtifactMainStatById } from "@/lib/supabase/data";
 import { useEffect, useState } from "react";
 
-const useArtifactMainStatById = (form: any) => {
+const useArtifactMainStatById = (id: number) => {
   const [mainStat, setMainStat] = useState<ArtifactMainStats | null>(null);
 
   useEffect(() => {
@@ -11,8 +11,8 @@ const useArtifactMainStatById = (form: any) => {
       if (error) throw error;
       setMainStat(data as ArtifactMainStats);
     };
-    fetchArtifactMainStat(form.watch("mainStatId"));
-  }, [form.watch("mainStatId")]);
+    fetchArtifactMainStat(id);
+  }, [id]);
 
   return mainStat;
 };
