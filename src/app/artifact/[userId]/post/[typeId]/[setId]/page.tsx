@@ -1,6 +1,6 @@
-import { GetArtifactIcon } from "@/actions/getArtifactIcon";
 import { GetArtifactIcons } from "@/actions/getArtifactIcons";
 import { GetArtifactTypes } from "@/actions/getArtifactTypes";
+import { GetStats } from "@/actions/getStats";
 import ArtifacterRegisterForm from "@/components/artifacter/register-form";
 
 const PostArtifactPage = async ({
@@ -10,7 +10,7 @@ const PostArtifactPage = async ({
 }) => {
   const types = await GetArtifactTypes();
   const icons = await GetArtifactIcons();
-  const icon = await GetArtifactIcon(params.typeId + params.setId);
+  const stats = await GetStats();
 
   return (
     <ArtifacterRegisterForm
@@ -19,7 +19,7 @@ const PostArtifactPage = async ({
       setId={params.setId}
       types={types}
       icons={icons}
-      icon={icon}
+      stats={stats}
     />
   );
 };

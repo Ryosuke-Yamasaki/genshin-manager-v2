@@ -46,8 +46,9 @@ interface ArtifacterRegisterFormProps {
   setId: string;
   types: ArtifactTypes[];
   icons: ArtifactIcons[];
-  icon: ArtifactIcons;
+  stats: Stats[];
 }
+
 interface SelectArtifactTypeProps {
   typeId: number;
   setId: string;
@@ -68,6 +69,10 @@ interface SelectDialogProps {
   children: React.ReactNode;
   headerTitle: string;
   icon: { artifactId: number; url: string };
+}
+
+interface SubOptionFormProps {
+  stats: Stats[];
 }
 
 interface Artifacter {
@@ -96,5 +101,6 @@ export type {
   SelectArtifactMainStatProps,
   SelectArtifactProps,
   SelectDialogProps,
+  SubOptionFormProps,
   Artifacter,
 };

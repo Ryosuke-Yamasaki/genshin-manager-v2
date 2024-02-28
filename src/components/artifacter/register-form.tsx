@@ -33,7 +33,7 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
   setId,
   types,
   icons,
-  icon,
+  stats,
 }) => {
   const [isPending, startTransition] = useTransition();
 
@@ -66,6 +66,7 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
 
   const mainStatValue = useArtifactMainStatById(form.watch("mainStatId"));
   const artifact = useArtifactById(Number(typeId + setId));
+  const icon = icons.find((icon) => icon.artifactId === Number(typeId + setId));
 
   return (
     <Form {...form}>
@@ -100,7 +101,7 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
                 <StarFilledIcon color="#fecc32" />
               </div>
             </div>
-            <SelectArtifact typeId={typeId} icons={icons} icon={icon} />
+            <SelectArtifact typeId={typeId} icons={icons} icon={icon!} />
           </div>
         </div>
         <div className="h-1 bg-gradient-to-r from-[#816c58] to-[#b79056]" />
@@ -117,7 +118,7 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
               登録
             </Button>
           </div>
-          <SubOptionForm />
+          <SubOptionForm stats={stats} />
           <div className="text-[#64af5d]">{artifact?.ArtifactSets.name}</div>
           <ul className="list-inside list-disc">
             <li className="text-[#727781]">

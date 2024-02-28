@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { IntStatId } from "@/lib/utils";
-import useStatById from "@/hooks/useStatById";
+import { SubOptionFormProps } from "@/lib/interface";
 
 const subOptions = [
   { id: "101", name: "HP" },
@@ -30,8 +30,8 @@ const subOptions = [
   { id: "700", name: "会心ダメージ" },
 ];
 
-const SubOptionForm = () => {
-  const { getValues, watch, control } = useFormContext();
+const SubOptionForm: React.FC<SubOptionFormProps> = ({ stats }) => {
+  const { watch, control } = useFormContext();
 
   const { fields } = useFieldArray({
     name: "subOptions",
@@ -45,8 +45,13 @@ const SubOptionForm = () => {
           <AccordionTrigger>
             <ul className="list-inside list-disc font-semibold text-[#545963]">
               <li>
-                {useStatById(getValues(`subOptions.${index}.statId`))?.text}+
-                {watch(`subOptions.${index}.value`)}
+                {
+                  stats?.find(
+                    (stat) =>
+                      stat.id === Number(watch(`subOptions.${index}.statId`))
+                  )?.text
+                }
+                +{watch(`subOptions.${index}.value`)}
                 {!IntStatId(watch(`subOptions.${index}.statId`).toString()) && (
                   <>%</>
                 )}

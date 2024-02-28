@@ -1,15 +1,11 @@
 import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 
-export const GetArtifactIcon = async (id: string) => {
+export const GetStats = async () => {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
-  const { data, error } = await supabase
-    .from("ArtifactIcons")
-    .select()
-    .eq("artifactId", id)
-    .single();
+  const { data, error } = await supabase.from("Stats").select();
 
   if (error) throw console.log(error);
 
