@@ -1,14 +1,12 @@
 "use client";
 
-import { createBrowserClient } from "@supabase/ssr";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "../ui/button";
+import { createClient } from "@/lib/supabase/client";
 
 const LoginWithGoogleButton = () => {
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const supabase = createClient();
+
   const LoginWithGoogle = () => {
     supabase.auth.signInWithOAuth({
       provider: "google",
