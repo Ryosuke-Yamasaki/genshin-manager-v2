@@ -2,7 +2,6 @@
 
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,6 +9,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DeleteArtifacters } from "@/actions/deleteArtifacters";
+import { ArtifacterSchema } from "@/lib/zodschema";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -18,7 +19,8 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  console.log(row.original);
+  const data = ArtifacterSchema.parse(row.original);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -31,17 +33,11 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <form>
-            <Button
-              variant="ghost"
-              size="free"
-              className="w-full flex justify-start"
-            >
-              Delete
-            </Button>
-          </form>
+        <DropdownMenuItem disabled>Edit</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={async () => await DeleteArtifacters(data.id)}
+        >
+          Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
