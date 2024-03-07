@@ -21,12 +21,13 @@ export const PostArtifacters = async (
   const score = subOptions
     .filter((data) => Object.keys(scoreMultipliers).includes(data.statId))
     .map((data) => Number(data.value) * scoreMultipliers[data.statId])
-    .reduce((a, b) => a + b)
+    .reduce((a, b) => a + b, 0)
     .toFixed(3);
 
   subOptions.map((data) => {
-    if (!IntStatId(data.statId.toString()))
-      data.value = (Number(data.value) / 100).toFixed(3).toString();
+    if (!IntStatId(data.statId)) {
+      data.value = (Number(data.value) / 100).toFixed(3);
+    }
   });
 
   const cookieStore = cookies();
