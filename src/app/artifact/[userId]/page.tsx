@@ -1,5 +1,5 @@
 import { GetArtifacters } from "@/actions/getArtifacters";
-import { DataTable } from "@/components/artifacter/data-table";
+import { DataTable } from "@/components/ui/data-table";
 import { columns } from "../../../components/artifacter/columns";
 import { GetArtifactTypes } from "@/actions/getArtifactTypes";
 import { GetArtifactSets } from "@/actions/getArtifactSets";
