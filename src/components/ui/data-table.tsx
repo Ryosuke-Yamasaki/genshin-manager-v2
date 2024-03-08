@@ -23,8 +23,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { DataTablePagination } from "./data-table-pagination";
-import { DataTableToolbar } from "./data-table-toolbar";
+import { DataTablePagination } from "../artifacter/data-table-pagination";
+import { DataTableToolbar } from "../artifacter/data-table-toolbar";
 import { ArtifactSets, ArtifactTypes, Stats } from "@/lib/interface";
 
 interface DataTableProps<TData, TValue> {
