@@ -21,11 +21,11 @@ import { FormatPercent } from "@/lib/utils";
 import { PostArtifacterSubOptions } from "@/actions/postArtifacterSubOptions";
 
 const mainStatsDefaultValues = [
-  { typeId: "1", value: 101 },
-  { typeId: "2", value: 201 },
-  { typeId: "3", value: 203 },
-  { typeId: "4", value: 1251 },
-  { typeId: "5", value: 600 },
+  { typeId: "1", value: "101" },
+  { typeId: "2", value: "201" },
+  { typeId: "3", value: "203" },
+  { typeId: "4", value: "1251" },
+  { typeId: "5", value: "600" },
 ];
 
 const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
@@ -46,9 +46,9 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
     resolver: zodResolver(postArtifacterSchema),
     defaultValues: {
       userId: userId,
-      typeId: Number(typeId),
-      setId: Number(setId),
-      artifactId: Number(typeId + setId),
+      typeId,
+      setId,
+      artifactId: typeId + setId,
       mainStatId,
       subOptions: [
         { statId: "600", value: "3.9" },

@@ -7,7 +7,7 @@ const getArtifactTypes = async () => {
   return types;
 };
 
-const getArtifactMainStatById = async (id: number) => {
+const getArtifactMainStatById = async (id: string) => {
   const mainStats = await supabase
     .from("ArtifactMainStats")
     .select()
