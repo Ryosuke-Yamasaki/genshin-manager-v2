@@ -78,7 +78,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <Button variant="outline" asChild>
+      <Button className="focus:shadow-inner" variant="outline" asChild>
         <Link href={`${userId}/post/1/501`}>聖遺物を追加</Link>
       </Button>
     </div>

@@ -18,6 +18,7 @@ import SubOptionForm from "./sub-option-form";
 import useArtifactById from "@/hooks/useArtifactById";
 import useArtifactMainStatById from "@/hooks/useArtifactMainStatById";
 import { FormatPercent } from "@/lib/utils";
+import { PostArtifacterSubOptions } from "@/actions/postArtifacterSubOptions";
 
 const mainStatsDefaultValues = [
   { typeId: "1", value: 101 },
@@ -60,7 +61,9 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
 
   const onSubmit = (values: z.infer<typeof postArtifacterSchema>) => {
     startTransition(async () => {
-      await PostArtifacters(values);
+      const data = await PostArtifacters(values);
+      const { id } = data;
+      await PostArtifacterSubOptions(id, values.subOptions);
     });
   };
 

@@ -1,11 +1,8 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { IntStatId } from "@/lib/utils";
 import { postArtifacterSchema } from "@/lib/zodschema";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export const PostArtifacters = async (
@@ -23,12 +20,6 @@ export const PostArtifacters = async (
     .map((data) => Number(data.value) * scoreMultipliers[data.statId])
     .reduce((a, b) => a + b, 0)
     .toFixed(3);
-
-  subOptions.map((data) => {
-    if (!IntStatId(data.statId)) {
-      data.value = (Number(data.value) / 100).toFixed(3);
-    }
-  });
 
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
@@ -48,15 +39,5 @@ export const PostArtifacters = async (
 
   if (error) throw error;
 
-  subOptions.map(async (subOption) => {
-    const { error } = await supabase.from("ArtifacterSubOptions").insert({
-      artifacterId: data.id,
-      statId: subOption.statId,
-      value: subOption.value,
-    });
-    if (error) throw error;
-  });
-
-  revalidatePath("../../");
-  redirect("../../");
+  return data;
 };
