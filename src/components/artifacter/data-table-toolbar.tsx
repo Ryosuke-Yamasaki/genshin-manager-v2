@@ -5,11 +5,11 @@ import { Table } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 
-import { DataTableFacetedFilter } from "./data-table-faceted-filter";
+import { DataTableFacetedFilter } from "../ui/data-table-faceted-filter";
 import { ArtifactSets, ArtifactTypes, Stats } from "@/lib/interface";
 import Link from "next/link";
 
-interface DataTableToolbarProps<TData> {
+interface ArtifacterDataTableToolbarProps<TData> {
   table: Table<TData>;
   types: ArtifactTypes[];
   sets: ArtifactSets[];
@@ -17,13 +17,13 @@ interface DataTableToolbarProps<TData> {
   userId: string;
 }
 
-export function DataTableToolbar<TData>({
+export function ArtifacterDataTableToolbar<TData>({
   table,
   types,
   sets,
   mainStats,
   userId,
-}: DataTableToolbarProps<TData>) {
+}: ArtifacterDataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   const typeOptions = [];

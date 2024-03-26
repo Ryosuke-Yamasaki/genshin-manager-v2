@@ -89,6 +89,54 @@ interface Artifacter {
   Stats: Stats;
 }
 
+interface Visions {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface WeaponTypes {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface Genders {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface Regions {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface Character {
+  id: number;
+  name: string;
+  star: number;
+  visionId: number;
+  weaponTypeId: number;
+  genderId: number;
+  brithday: string;
+  regionId: number;
+  affiliation: string;
+  hp: number;
+  atk: number;
+  def: number;
+  ascensionStatId: number;
+  Visions: Visions;
+  WeaponTypes: WeaponTypes;
+  Genders: Genders;
+  Regions: Regions | null;
+  CharacterBaseHps: { level90_90: number };
+  CharacterBaseAttacks: { level90_90: number };
+  CharacterBaseDefenses: { level90_90: number };
+  CharacterAscensionBonusStats: { Stats: Stats };
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -103,4 +151,9 @@ export type {
   SelectDialogProps,
   SubOptionFormProps,
   Artifacter,
+  Visions,
+  WeaponTypes,
+  Genders,
+  Regions,
+  Character,
 };

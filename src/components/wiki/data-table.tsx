@@ -23,26 +23,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { DataTablePagination } from "../artifacter/data-table-pagination";
-import { DataTableToolbar } from "../artifacter/data-table-toolbar";
-import { ArtifactSets, ArtifactTypes, Stats } from "@/lib/interface";
+import { DataTablePagination } from "../ui/data-table-pagination";
+import { CharacterDataTableToolbar } from "./data-table-toolbar copy";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  types: ArtifactTypes[];
-  sets: ArtifactSets[];
-  mainStats: Stats[];
-  userId: string;
 }
 
-export function DataTable<TData, TValue>({
+export function CharacterDataTable<TData, TValue>({
   columns,
   data,
-  types,
-  sets,
-  mainStats,
-  userId,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -61,13 +52,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar
-        table={table}
-        types={types}
-        sets={sets}
-        mainStats={mainStats}
-        userId={userId}
-      />
+      <CharacterDataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
