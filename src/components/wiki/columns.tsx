@@ -1,10 +1,9 @@
 "use client";
 
 import { Character } from "@/lib/interface";
-import { FormatPercent, IntStatId } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "../ui/data-table-column-header";
-import { DataTableRowActions } from "../ui/data-table-row-actions";
+import Link from "next/link";
 
 export const characterColumns: ColumnDef<Character>[] = [
   {
@@ -12,6 +11,19 @@ export const characterColumns: ColumnDef<Character>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="名前" />
     ),
+    cell: ({ row }) => {
+      const data = row.original;
+      const { id, name } = data;
+
+      return (
+        <Link
+          href={`characters/${id}`}
+          className="underline hover:decoration-2 hover:font-semibold"
+        >
+          {name}
+        </Link>
+      );
+    },
   },
   {
     id: "star",

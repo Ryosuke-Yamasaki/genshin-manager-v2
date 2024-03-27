@@ -2,7 +2,7 @@ import { GetCharacters } from "@/actions/getCharacters";
 import { characterColumns } from "@/components/wiki/columns";
 import { CharacterDataTable } from "@/components/wiki/data-table";
 
-const CharacterPage = async () => {
+const CharactersPage = async () => {
   const data = await GetCharacters();
   console.log(data);
 
@@ -13,4 +13,4 @@ const CharacterPage = async () => {
   );
 };
 
-export default CharacterPage;
+export default CharactersPage;

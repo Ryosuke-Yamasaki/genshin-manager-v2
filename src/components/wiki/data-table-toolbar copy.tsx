@@ -6,8 +6,7 @@ import { Table } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 
 import { DataTableFacetedFilter } from "../ui/data-table-faceted-filter";
-import { ArtifactSets, ArtifactTypes, Stats } from "@/lib/interface";
-import Link from "next/link";
+import { Input } from "../ui/input";
 
 interface CharacterDataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -59,6 +58,14 @@ export function CharacterDataTableToolbar<TData>({
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
+        <Input
+          placeholder="名前を検索"
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("name")?.setFilterValue(event.target.value)
+          }
+          className="h-8 w-[150px] px-3"
+        />
         {table.getColumn("star") && (
           <DataTableFacetedFilter
             column={table.getColumn("star")}
