@@ -116,25 +116,35 @@ interface Regions {
 interface Character {
   id: number;
   name: string;
-  star: number;
-  visionId: number;
   weaponTypeId: number;
   genderId: number;
-  brithday: string;
+  star: number;
+  ascensionBonusStatId: number;
+  signatureWeaponId: number;
+  birthday: string;
+  title: string;
+  description: string;
   regionId: number;
   affiliation: string;
-  hp: number;
-  atk: number;
-  def: number;
-  ascensionStatId: number;
+  visionId: number;
+  constellation: string;
   Visions: Visions;
   WeaponTypes: WeaponTypes;
   Genders: Genders;
-  Regions: Regions | null;
-  CharacterBaseHps: { level90_90: number };
-  CharacterBaseAttacks: { level90_90: number };
-  CharacterBaseDefenses: { level90_90: number };
-  CharacterAscensionBonusStats: { Stats: Stats };
+  Regions: Regions;
+  CharacterBaseHps: {
+    [K: string]: number;
+  };
+  CharacterBaseAttacks: {
+    [K: string]: number;
+  };
+  CharacterBaseDefenses: {
+    [K: string]: number;
+  };
+  CharacterAscensionBonusStats: {
+    [K: string]: number | Stats;
+    Stats: Stats;
+  };
 }
 
 interface SectionWrapperProps {
@@ -143,8 +153,14 @@ interface SectionWrapperProps {
   id: string;
 }
 
+interface ProfileProps {
+  character: Character;
+  url: { characterId: number; icon: string; gacha: string };
+  title: { label: string; value: string };
+}
 interface StatsProps {
-  characterId: string;
+  character: Character;
+  title: { label: string; value: string };
 }
 
 export type {
@@ -167,5 +183,6 @@ export type {
   Regions,
   Character,
   SectionWrapperProps,
+  ProfileProps,
   StatsProps,
 };

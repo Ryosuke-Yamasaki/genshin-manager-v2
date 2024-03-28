@@ -8,7 +8,9 @@ import {
 const SectionWrapper = ({ children, headerTitle, id }: SectionWrapperProps) => {
   return (
     <AccordionItem value={id} className="w-full">
-      <AccordionTrigger className="text-xl">{headerTitle}</AccordionTrigger>
+      <AccordionTrigger className="text-xl" id={id}>
+        {headerTitle}
+      </AccordionTrigger>
       <AccordionContent>{children}</AccordionContent>
     </AccordionItem>
   );

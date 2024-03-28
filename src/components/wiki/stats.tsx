@@ -1,49 +1,76 @@
-import { GetCharacterImageUrlById } from "@/actions/getCharacterImageUrlById";
 import SectionWrapper from "./section-wrapper";
 import { StatsProps } from "@/lib/interface";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { GetCharacterById } from "@/actions/getCharacterById";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { FormatPercent } from "@/lib/utils";
 
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+const Stats: React.FC<StatsProps> = async ({ character, title }) => {
+  const headers = [
+    { value: "レベル", label: "level" },
+    { value: "基礎HP", label: "hp" },
+    { value: "基礎攻撃力", label: "atk" },
+    { value: "基礎防御力", label: "def" },
+    {
+      value: character.CharacterAscensionBonusStats.Stats.text,
+      label: "ascension",
+    },
+  ];
 
-const Stats: React.FC<StatsProps> = async ({ characterId }) => {
-  const character = await GetCharacterById(characterId);
-  const url = await GetCharacterImageUrlById(characterId);
-
-  const stats = [
-    { label: "名前", value: character.name },
-    { label: "称号", value: character.title },
-    { label: "国", value: character.Regions.japanese },
-    { label: "所属", value: character.affiliation },
-    { label: "レア度", value: character.star },
-    { label: "武器種", value: character.WeaponTypes.japanese },
-    { label: "神の目", value: character.Visions.japanese },
-    { label: "誕生日", value: character.birthday },
-    { label: "命ノ星座", value: character.constellation },
-    { label: "説明", value: character.description },
+  const levels = [
+    { value: "Lv.1", label: "level1_20" },
+    { value: "Lv.20", label: "level20_20" },
+    { value: "Lv.20+", label: "level20_40" },
+    { value: "Lv.40", label: "level40_40" },
+    { value: "Lv.40+", label: "level40_50" },
+    { value: "Lv.50", label: "level50_50" },
+    { value: "Lv.50+", label: "level50_60" },
+    { value: "Lv.60", label: "level60_60" },
+    { value: "Lv.60+", label: "level60_70" },
+    { value: "Lv.70", label: "level70_70" },
+    { value: "Lv.70+", label: "level70_80" },
+    { value: "Lv.80", label: "level80_80" },
+    { value: "Lv.80+", label: "level80_90" },
+    { value: "Lv.90", label: "level90_90" },
   ];
 
   return (
-    <SectionWrapper headerTitle="基本情報" id={character.id}>
-      <div className="flex space-x-2">
-        <Avatar className="basis-1/2">
-          <AvatarImage
-            src={url.gacha}
-            className="object-cover object-center aspect-auto"
-          />
-          <AvatarFallback>{url.characterId}</AvatarFallback>
-        </Avatar>
-        <Table>
-          <TableBody>
-            {stats.map((stat) => (
-              <TableRow key={stat.label}>
-                <TableCell className="text-nowrap">{stat.label}</TableCell>
-                <TableCell>{stat.value}</TableCell>
-              </TableRow>
+    <SectionWrapper headerTitle={title.value} id={title.label}>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {headers.map((header) => (
+              <TableHead key={header.label}>{header.value}</TableHead>
             ))}
-          </TableBody>
-        </Table>
-      </div>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {levels.map((level) => (
+            <TableRow key={level.label}>
+              <TableCell>{level.value}</TableCell>
+              <TableCell>
+                {character.CharacterBaseHps[level.label].toFixed(0)}
+              </TableCell>
+              <TableCell>
+                {character.CharacterBaseAttacks[level.label].toFixed(0)}
+              </TableCell>
+              <TableCell>
+                {character.CharacterBaseDefenses[level.label].toFixed(0)}
+              </TableCell>
+              <TableCell>
+                {FormatPercent(
+                  Number(character.CharacterAscensionBonusStats[level.label])
+                )}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </SectionWrapper>
   );
 };
