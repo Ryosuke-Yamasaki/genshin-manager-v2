@@ -2,7 +2,9 @@ import { GetCharacterById } from "@/actions/getCharacterById";
 import { GetCharacterImageUrlById } from "@/actions/getCharacterImageUrlById";
 import { Accordion } from "@/components/ui/accordion";
 import Contents from "@/components/wiki/contents";
+import NormalAttack from "@/components/wiki/normal-attacks";
 import Profile from "@/components/wiki/profile";
+import SectionWrapper from "@/components/wiki/section-wrapper";
 import Stats from "@/components/wiki/stats";
 
 const CharacterPage = async ({
@@ -37,13 +39,14 @@ const CharacterPage = async ({
       <Profile character={character} url={url} title={contents[1]} />
       <Stats character={character} title={contents[2]} />
 
-      <div id="talents">
-        天賦
-        <div>通常攻撃</div>
-        <div>元素スキル</div>
-        <div>元素爆発</div>
-        <div>固有天賦</div>
-      </div>
+      <SectionWrapper headerTitle={contents[3].value} id={contents[3].label}>
+        <div className="space-y-2">
+          <NormalAttack title={contents[4]} characterId={params.characterId} />
+          <div>元素スキル</div>
+          <div>元素爆発</div>
+          <div>固有天賦</div>
+        </div>
+      </SectionWrapper>
       <div>命ノ星座</div>
     </Accordion>
   );

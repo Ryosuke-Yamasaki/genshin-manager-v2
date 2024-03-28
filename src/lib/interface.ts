@@ -168,6 +168,11 @@ interface ContentsProps {
   title: { label: string; value: string };
 }
 
+interface NormalAttacksProps {
+  characterId: string;
+  title: { label: string; value: string };
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -191,4 +196,5 @@ export type {
   ProfileProps,
   StatsProps,
   ContentsProps,
+  NormalAttacksProps,
 };
