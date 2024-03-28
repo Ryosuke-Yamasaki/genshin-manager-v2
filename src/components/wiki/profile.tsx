@@ -3,7 +3,7 @@ import { ProfileProps } from "@/lib/interface";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
-const Profile: React.FC<ProfileProps> = async ({ character, url, title }) => {
+const Profile: React.FC<ProfileProps> = ({ character, url, title }) => {
   const items = [
     { label: "名前", value: character.name },
     { label: "称号", value: character.title },

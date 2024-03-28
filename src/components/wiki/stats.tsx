@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { FormatPercent } from "@/lib/utils";
 
-const Stats: React.FC<StatsProps> = async ({ character, title }) => {
+const Stats: React.FC<StatsProps> = ({ character, title }) => {
   const headers = [
     { value: "レベル", label: "level" },
     { value: "基礎HP", label: "hp" },
