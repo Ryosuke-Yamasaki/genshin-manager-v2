@@ -41,7 +41,7 @@ const Stats: React.FC<StatsProps> = ({ character, title }) => {
 
   return (
     <SectionWrapper headerTitle={title.value} id={title.label}>
-      <Table>
+      <Table className="w-fit">
         <TableHeader>
           <TableRow>
             {headers.map((header) => (
@@ -51,8 +51,8 @@ const Stats: React.FC<StatsProps> = ({ character, title }) => {
         </TableHeader>
         <TableBody>
           {levels.map((level) => (
-            <TableRow key={level.label}>
-              <TableCell>{level.value}</TableCell>
+            <TableRow key={level.label} className="text-center">
+              <TableCell className="border-r">{level.value}</TableCell>
               <TableCell>
                 {character.CharacterBaseHps[level.label].toFixed(0)}
               </TableCell>

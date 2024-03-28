@@ -19,7 +19,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className="scroll-smooth">
       <body className={fontSans.variable}>
         <div className="flex min-h-screen flex-col">
           <NavBar />

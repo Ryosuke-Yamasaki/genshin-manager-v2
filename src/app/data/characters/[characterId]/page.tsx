@@ -1,6 +1,7 @@
 import { GetCharacterById } from "@/actions/getCharacterById";
 import { GetCharacterImageUrlById } from "@/actions/getCharacterImageUrlById";
 import { Accordion } from "@/components/ui/accordion";
+import Contents from "@/components/wiki/contents";
 import Profile from "@/components/wiki/profile";
 import Stats from "@/components/wiki/stats";
 
@@ -13,6 +14,7 @@ const CharacterPage = async ({
   const url = await GetCharacterImageUrlById(params.characterId);
 
   const contents = [
+    { value: "目次", label: "contents" },
     { value: "基本情報", label: "profile" },
     { value: "基礎ステータス", label: "stats" },
     { value: "天賦", label: "talents" },
@@ -31,11 +33,11 @@ const CharacterPage = async ({
       defaultValue={contentValues}
       className="space-y-4 max-w-[800px]"
     >
-      <div>目次</div>
-      <Profile character={character} url={url} title={contents[0]} />
-      <Stats character={character} title={contents[1]} />
+      <Contents contents={contents} title={contents[0]} />
+      <Profile character={character} url={url} title={contents[1]} />
+      <Stats character={character} title={contents[2]} />
 
-      <div>
+      <div id="talents">
         天賦
         <div>通常攻撃</div>
         <div>元素スキル</div>

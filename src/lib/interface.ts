@@ -163,6 +163,11 @@ interface StatsProps {
   title: { label: string; value: string };
 }
 
+interface ContentsProps {
+  contents: { label: string; value: string }[];
+  title: { label: string; value: string };
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -185,4 +190,5 @@ export type {
   SectionWrapperProps,
   ProfileProps,
   StatsProps,
+  ContentsProps,
 };
