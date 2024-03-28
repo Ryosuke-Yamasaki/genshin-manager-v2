@@ -137,6 +137,16 @@ interface Character {
   CharacterAscensionBonusStats: { Stats: Stats };
 }
 
+interface SectionWrapperProps {
+  children: React.ReactNode;
+  headerTitle: string;
+  id: string;
+}
+
+interface StatsProps {
+  characterId: string;
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -156,4 +166,6 @@ export type {
   Genders,
   Regions,
   Character,
+  SectionWrapperProps,
+  StatsProps,
 };

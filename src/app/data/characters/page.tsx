@@ -4,7 +4,6 @@ import { CharacterDataTable } from "@/components/wiki/data-table";
 
 const CharactersPage = async () => {
   const data = await GetCharacters();
-  console.log(data);
 
   return (
     <div>
