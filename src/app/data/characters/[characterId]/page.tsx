@@ -2,6 +2,8 @@ import { GetCharacterById } from "@/actions/getCharacterById";
 import { GetCharacterImageUrlById } from "@/actions/getCharacterImageUrlById";
 import { Accordion } from "@/components/ui/accordion";
 import Contents from "@/components/wiki/contents";
+import ElementalBurst from "@/components/wiki/elemental-bursts";
+import ElementalSkill from "@/components/wiki/elemental-skills";
 import NormalAttack from "@/components/wiki/normal-attacks";
 import Profile from "@/components/wiki/profile";
 import SectionWrapper from "@/components/wiki/section-wrapper";
@@ -42,8 +44,15 @@ const CharacterPage = async ({
       <SectionWrapper headerTitle={contents[3].value} id={contents[3].label}>
         <div className="space-y-2">
           <NormalAttack title={contents[4]} characterId={params.characterId} />
-          <div>元素スキル</div>
-          <div>元素爆発</div>
+          <ElementalSkill
+            title={contents[5]}
+            characterId={params.characterId}
+          />
+          <ElementalBurst
+            title={contents[6]}
+            characterId={params.characterId}
+          />
+
           <div>固有天賦</div>
         </div>
       </SectionWrapper>

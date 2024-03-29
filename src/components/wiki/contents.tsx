@@ -5,7 +5,7 @@ import { ContentsProps } from "@/lib/interface";
 const Contents: React.FC<ContentsProps> = ({ contents, title }) => {
   return (
     <SectionWrapper headerTitle={title.value} id={title.label}>
-      <ul className="list-disc list-inside">
+      <ul className="list-disc list-inside underline">
         <li>
           <Link href={`#${contents[1].label}`}>{contents[1].value}</Link>
         </li>

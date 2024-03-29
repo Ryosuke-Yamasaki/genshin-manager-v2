@@ -1,9 +1,9 @@
 import { TalentsProps } from "@/lib/interface";
 import SectionWrapper from "./section-wrapper";
-import { GetNormalAttackById } from "@/actions/getNormalAttackById";
+import { GetElementalBurstById } from "@/actions/getElementalBurstById";
 import parse from "html-react-parser";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { GetNormalAttackValuesById } from "@/actions/getNormalAttackValuesById";
+import { GetElementalBurstValuesById } from "@/actions/getElementalBurstValuesById";
 import {
   Table,
   TableBody,
@@ -14,9 +14,13 @@ import {
 } from "@/components/ui/table";
 import { FormatPercent } from "@/lib/utils";
 
-const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
-  const normalAttack = await GetNormalAttackById(characterId);
-  const data = await GetNormalAttackValuesById(characterId);
+const ElementalBurst: React.FC<TalentsProps> = async ({
+  characterId,
+  title,
+}) => {
+  const elementalBurst = await GetElementalBurstById(characterId);
+  const data = await GetElementalBurstValuesById(characterId);
+  console.log(data);
 
   const levels = [
     { value: "Lv.1", label: "level1" },
@@ -41,12 +45,12 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
       <div className="divide-y">
         <div className="flex items-center divide-x">
           <Avatar>
-            <AvatarImage src={normalAttack.iconUrl} className="h-24 w-24" />
-            <AvatarFallback>{normalAttack.characterId}</AvatarFallback>
+            <AvatarImage src={elementalBurst.iconUrl} className="h-24 w-24" />
+            <AvatarFallback>{elementalBurst.characterId}</AvatarFallback>
           </Avatar>
           <div className="pl-2 py-2 space-y-2">
-            <div className="text-xl">{normalAttack.title}</div>
-            <div>{parse(normalAttack.description)}</div>
+            <div className="text-xl">{elementalBurst.title}</div>
+            <div>{parse(elementalBurst.description)}</div>
           </div>
         </div>
         <div className="pb-2">
@@ -69,8 +73,8 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
                   </TableCell>
                   {levels.map((level) => (
                     <TableCell key={level.label}>
-                      {Number.isInteger(data["level1"])
-                        ? data[level.label]
+                      {data.percent
+                        ? data[level.label].toFixed(1)
                         : FormatPercent(data[level.label])}
                     </TableCell>
                   ))}
@@ -84,4 +88,4 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
   );
 };
 
-export default NormalAttack;
+export default ElementalBurst;

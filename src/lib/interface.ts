@@ -168,7 +168,7 @@ interface ContentsProps {
   title: { label: string; value: string };
 }
 
-interface NormalAttacksProps {
+interface TalentsProps {
   characterId: string;
   title: { label: string; value: string };
 }
@@ -196,5 +196,5 @@ export type {
   ProfileProps,
   StatsProps,
   ContentsProps,
-  NormalAttacksProps,
+  TalentsProps,
 };

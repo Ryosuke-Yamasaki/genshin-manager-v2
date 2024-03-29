@@ -1,9 +1,9 @@
 import { TalentsProps } from "@/lib/interface";
 import SectionWrapper from "./section-wrapper";
-import { GetNormalAttackById } from "@/actions/getNormalAttackById";
+import { GetElementalSkillById } from "@/actions/getElementalSkillById";
 import parse from "html-react-parser";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { GetNormalAttackValuesById } from "@/actions/getNormalAttackValuesById";
+import { GetElementalSkillValuesById } from "@/actions/getElementalSkillValuesById";
 import {
   Table,
   TableBody,
@@ -14,9 +14,12 @@ import {
 } from "@/components/ui/table";
 import { FormatPercent } from "@/lib/utils";
 
-const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
-  const normalAttack = await GetNormalAttackById(characterId);
-  const data = await GetNormalAttackValuesById(characterId);
+const ElementalSkill: React.FC<TalentsProps> = async ({
+  characterId,
+  title,
+}) => {
+  const elementalSkill = await GetElementalSkillById(characterId);
+  const data = await GetElementalSkillValuesById(characterId);
 
   const levels = [
     { value: "Lv.1", label: "level1" },
@@ -41,12 +44,12 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
       <div className="divide-y">
         <div className="flex items-center divide-x">
           <Avatar>
-            <AvatarImage src={normalAttack.iconUrl} className="h-24 w-24" />
-            <AvatarFallback>{normalAttack.characterId}</AvatarFallback>
+            <AvatarImage src={elementalSkill.iconUrl} className="h-24 w-24" />
+            <AvatarFallback>{elementalSkill.characterId}</AvatarFallback>
           </Avatar>
           <div className="pl-2 py-2 space-y-2">
-            <div className="text-xl">{normalAttack.title}</div>
-            <div>{parse(normalAttack.description)}</div>
+            <div className="text-xl">{elementalSkill.title}</div>
+            <div>{parse(elementalSkill.description)}</div>
           </div>
         </div>
         <div className="pb-2">
@@ -69,8 +72,8 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
                   </TableCell>
                   {levels.map((level) => (
                     <TableCell key={level.label}>
-                      {Number.isInteger(data["level1"])
-                        ? data[level.label]
+                      {data.percent
+                        ? data[level.label].toFixed(1)
                         : FormatPercent(data[level.label])}
                     </TableCell>
                   ))}
@@ -84,4 +87,4 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
   );
 };
 
-export default NormalAttack;
+export default ElementalSkill;
