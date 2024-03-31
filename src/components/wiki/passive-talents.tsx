@@ -18,11 +18,8 @@ const PassiveTalents: React.FC<PassiveTalentsProps> = async ({
           {passiveTalents.map((passiveTalent) => (
             <TableRow key={passiveTalent.id} className="divide-x">
               <TableCell>
-                <Avatar>
-                  <AvatarImage
-                    src={passiveTalent.iconUrl}
-                    className="h-16 w-16"
-                  />
+                <Avatar className="h-16 w-16">
+                  <AvatarImage src={passiveTalent.iconUrl} />
                   <AvatarFallback>{passiveTalent.characterId}</AvatarFallback>
                 </Avatar>
               </TableCell>

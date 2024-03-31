@@ -37,7 +37,7 @@ const CharacterPage = async ({
     <Accordion
       type="multiple"
       defaultValue={contentValues}
-      className="space-y-4 max-w-[800px]"
+      className="space-y-4 max-w-[1000px]"
     >
       <Contents contents={contents} title={contents[0]} />
       <Profile character={character} url={url} title={contents[1]} />

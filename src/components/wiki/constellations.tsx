@@ -10,7 +10,6 @@ const Constellations: React.FC<ConstellationsProps> = async ({
   title,
 }) => {
   const constellations = await GetConstellationsById(characterId);
-  console.log(constellations);
 
   return (
     <SectionWrapper headerTitle={title.value} id={title.label}>
@@ -19,11 +18,8 @@ const Constellations: React.FC<ConstellationsProps> = async ({
           {constellations.map((constellation) => (
             <TableRow key={constellation.id} className="divide-x">
               <TableCell>
-                <Avatar>
-                  <AvatarImage
-                    src={constellation.iconUrl}
-                    className="h-16 w-16"
-                  />
+                <Avatar className="h-16 w-16">
+                  <AvatarImage src={constellation.iconUrl} />
                   <AvatarFallback>{constellation.characterId}</AvatarFallback>
                 </Avatar>
                 <div className="text-center">第{constellation.rank}重</div>

@@ -25,12 +25,12 @@ export default async function RootLayout({
           <NavBar />
           {children}
         </div>
-      </body>
-      <footer className="py-5">
-        <div className="text-center text-sm">
-          Copyright © COGNOSPHERE. All rights reserved
+        <div className="py-5">
+          <div className="text-center text-sm">
+            Copyright © COGNOSPHERE. All rights reserved
+          </div>
         </div>
-      </footer>
+      </body>
     </html>
   );
 }

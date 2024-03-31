@@ -9,7 +9,8 @@ export const GetCharacters = async () => {
     .from("Characters")
     .select(
       "*,Visions(*),WeaponTypes(*),Genders(*),Regions(*),CharacterBaseHps(level90_90),CharacterBaseAttacks(level90_90),CharacterBaseDefenses(level90_90),CharacterAscensionBonusStats(Stats(*))"
-    );
+    )
+    .order("id");
 
   if (error) throw console.log(error);
 

@@ -124,14 +124,14 @@ interface Character {
   birthday: string;
   title: string;
   description: string;
-  regionId: number;
+  regionId: number | undefined;
   affiliation: string;
   visionId: number;
   constellation: string;
   Visions: Visions;
   WeaponTypes: WeaponTypes;
   Genders: Genders;
-  Regions: Regions;
+  Regions: Regions | undefined;
   CharacterBaseHps: {
     [K: string]: number;
   };

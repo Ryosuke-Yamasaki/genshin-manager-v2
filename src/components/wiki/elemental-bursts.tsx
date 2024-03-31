@@ -43,8 +43,8 @@ const ElementalBurst: React.FC<TalentsProps> = async ({
     <SectionWrapper headerTitle={title.value} id={title.label}>
       <div className="divide-y">
         <div className="flex items-center divide-x">
-          <Avatar>
-            <AvatarImage src={elementalBurst.iconUrl} className="h-24 w-24" />
+          <Avatar className="h-24 w-24 p-2">
+            <AvatarImage src={elementalBurst.iconUrl} />
             <AvatarFallback>{elementalBurst.characterId}</AvatarFallback>
           </Avatar>
           <div className="pl-2 py-2 space-y-2">

@@ -40,8 +40,8 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
     <SectionWrapper headerTitle={title.value} id={title.label}>
       <div className="divide-y">
         <div className="flex items-center divide-x">
-          <Avatar>
-            <AvatarImage src={normalAttack.iconUrl} className="h-24 w-24" />
+          <Avatar className="h-24 w-24 p-2">
+            <AvatarImage src={normalAttack.iconUrl} />
             <AvatarFallback>{normalAttack.characterId}</AvatarFallback>
           </Avatar>
           <div className="pl-2 py-2 space-y-2">

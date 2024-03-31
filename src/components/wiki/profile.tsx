@@ -7,7 +7,7 @@ const Profile: React.FC<ProfileProps> = ({ character, url, title }) => {
   const items = [
     { label: "名前", value: character.name },
     { label: "称号", value: character.title },
-    { label: "国", value: character.Regions.japanese },
+    { label: "国", value: character.Regions?.japanese },
     { label: "所属", value: character.affiliation },
     { label: "レア度", value: character.star },
     { label: "武器種", value: character.WeaponTypes.japanese },
