@@ -178,6 +178,11 @@ interface PassiveTalentsProps {
   title: { label: string; value: string };
 }
 
+interface ConstellationsProps {
+  characterId: string;
+  title: { label: string; value: string };
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -203,4 +208,5 @@ export type {
   ContentsProps,
   TalentsProps,
   PassiveTalentsProps,
+  ConstellationsProps,
 };

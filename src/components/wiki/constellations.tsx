@@ -1,35 +1,37 @@
-import { PassiveTalentsProps } from "@/lib/interface";
+import { ConstellationsProps } from "@/lib/interface";
 import SectionWrapper from "./section-wrapper";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { GetPassiveTalentById } from "@/actions/getPassiveTalentById";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import parse from "html-react-parser";
+import { GetConstellationsById } from "@/actions/getConstellationById";
 
-const PassiveTalents: React.FC<PassiveTalentsProps> = async ({
+const Constellations: React.FC<ConstellationsProps> = async ({
   characterId,
   title,
 }) => {
-  const passiveTalents = await GetPassiveTalentById(characterId);
+  const constellations = await GetConstellationsById(characterId);
+  console.log(constellations);
 
   return (
     <SectionWrapper headerTitle={title.value} id={title.label}>
       <Table className="w-fit">
         <TableBody>
-          {passiveTalents.map((passiveTalent) => (
-            <TableRow key={passiveTalent.id} className="divide-x">
+          {constellations.map((constellation) => (
+            <TableRow key={constellation.id} className="divide-x">
               <TableCell>
                 <Avatar>
                   <AvatarImage
-                    src={passiveTalent.iconUrl}
+                    src={constellation.iconUrl}
                     className="h-16 w-16"
                   />
-                  <AvatarFallback>{passiveTalent.characterId}</AvatarFallback>
+                  <AvatarFallback>{constellation.characterId}</AvatarFallback>
                 </Avatar>
+                <div className="text-center">第{constellation.rank}重</div>
               </TableCell>
               <TableCell>
                 <div className="space-y-2">
-                  <div className="text-lg">{passiveTalent.title}</div>
-                  <div>{parse(passiveTalent.description)}</div>
+                  <div className="text-lg">{constellation.title}</div>
+                  <div>{parse(constellation.description)}</div>
                 </div>
               </TableCell>
             </TableRow>
@@ -40,4 +42,4 @@ const PassiveTalents: React.FC<PassiveTalentsProps> = async ({
   );
 };
 
-export default PassiveTalents;
+export default Constellations;

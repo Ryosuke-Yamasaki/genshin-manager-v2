@@ -26,6 +26,11 @@ export default async function RootLayout({
           {children}
         </div>
       </body>
+      <footer className="py-5">
+        <div className="text-center text-sm">
+          Copyright © COGNOSPHERE. All rights reserved
+        </div>
+      </footer>
     </html>
   );
 }

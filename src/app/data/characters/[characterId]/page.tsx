@@ -1,6 +1,7 @@
 import { GetCharacterById } from "@/actions/getCharacterById";
 import { GetCharacterImageUrlById } from "@/actions/getCharacterImageUrlById";
 import { Accordion } from "@/components/ui/accordion";
+import Constellations from "@/components/wiki/constellations";
 import Contents from "@/components/wiki/contents";
 import ElementalBurst from "@/components/wiki/elemental-bursts";
 import ElementalSkill from "@/components/wiki/elemental-skills";
@@ -59,7 +60,7 @@ const CharacterPage = async ({
           />
         </div>
       </SectionWrapper>
-      <div>命ノ星座</div>
+      <Constellations title={contents[8]} characterId={params.characterId} />
     </Accordion>
   );
 };
