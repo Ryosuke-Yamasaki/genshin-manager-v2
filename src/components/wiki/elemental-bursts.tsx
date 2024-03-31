@@ -20,7 +20,6 @@ const ElementalBurst: React.FC<TalentsProps> = async ({
 }) => {
   const elementalBurst = await GetElementalBurstById(characterId);
   const data = await GetElementalBurstValuesById(characterId);
-  console.log(data);
 
   const levels = [
     { value: "Lv.1", label: "level1" },

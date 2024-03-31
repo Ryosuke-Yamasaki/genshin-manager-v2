@@ -173,6 +173,11 @@ interface TalentsProps {
   title: { label: string; value: string };
 }
 
+interface PassiveTalentsProps {
+  characterId: string;
+  title: { label: string; value: string };
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -197,4 +202,5 @@ export type {
   StatsProps,
   ContentsProps,
   TalentsProps,
+  PassiveTalentsProps,
 };

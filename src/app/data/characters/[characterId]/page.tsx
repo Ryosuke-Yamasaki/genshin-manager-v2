@@ -5,6 +5,7 @@ import Contents from "@/components/wiki/contents";
 import ElementalBurst from "@/components/wiki/elemental-bursts";
 import ElementalSkill from "@/components/wiki/elemental-skills";
 import NormalAttack from "@/components/wiki/normal-attacks";
+import PassiveTalents from "@/components/wiki/passive-talents";
 import Profile from "@/components/wiki/profile";
 import SectionWrapper from "@/components/wiki/section-wrapper";
 import Stats from "@/components/wiki/stats";
@@ -52,8 +53,10 @@ const CharacterPage = async ({
             title={contents[6]}
             characterId={params.characterId}
           />
-
-          <div>固有天賦</div>
+          <PassiveTalents
+            title={contents[7]}
+            characterId={params.characterId}
+          />
         </div>
       </SectionWrapper>
       <div>命ノ星座</div>
