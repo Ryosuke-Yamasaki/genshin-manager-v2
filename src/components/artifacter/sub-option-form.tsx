@@ -92,7 +92,7 @@ const SubOptionForm: React.FC<SubOptionFormProps> = ({ stats }) => {
                   <FormControl>
                     <Input
                       {...field}
-                      className="w-10 border-muted-foreground"
+                      className="w-10 border-muted-foreground text-center"
                     />
                   </FormControl>
                   {!IntStatId(

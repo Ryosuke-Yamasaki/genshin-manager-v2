@@ -89,6 +89,100 @@ interface Artifacter {
   Stats: Stats;
 }
 
+interface Visions {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface WeaponTypes {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface Genders {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface Regions {
+  id: number;
+  japanese: string;
+  english: string;
+}
+
+interface Character {
+  id: number;
+  name: string;
+  weaponTypeId: number;
+  genderId: number;
+  star: number;
+  ascensionBonusStatId: number;
+  signatureWeaponId: number;
+  birthday: string;
+  title: string;
+  description: string;
+  regionId: number | undefined;
+  affiliation: string;
+  visionId: number;
+  constellation: string;
+  Visions: Visions;
+  WeaponTypes: WeaponTypes;
+  Genders: Genders;
+  Regions: Regions | undefined;
+  CharacterBaseHps: {
+    [K: string]: number;
+  };
+  CharacterBaseAttacks: {
+    [K: string]: number;
+  };
+  CharacterBaseDefenses: {
+    [K: string]: number;
+  };
+  CharacterAscensionBonusStats: {
+    [K: string]: number | Stats;
+    Stats: Stats;
+  };
+}
+
+interface SectionWrapperProps {
+  children: React.ReactNode;
+  headerTitle: string;
+  id: string;
+}
+
+interface ProfileProps {
+  character: Character;
+  url: { characterId: number; icon: string; gacha: string };
+  title: { label: string; value: string };
+}
+interface StatsProps {
+  character: Character;
+  title: { label: string; value: string };
+}
+
+interface ContentsProps {
+  contents: { label: string; value: string }[];
+  title: { label: string; value: string };
+}
+
+interface TalentsProps {
+  characterId: string;
+  title: { label: string; value: string };
+}
+
+interface PassiveTalentsProps {
+  characterId: string;
+  title: { label: string; value: string };
+}
+
+interface ConstellationsProps {
+  characterId: string;
+  title: { label: string; value: string };
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -103,4 +197,16 @@ export type {
   SelectDialogProps,
   SubOptionFormProps,
   Artifacter,
+  Visions,
+  WeaponTypes,
+  Genders,
+  Regions,
+  Character,
+  SectionWrapperProps,
+  ProfileProps,
+  StatsProps,
+  ContentsProps,
+  TalentsProps,
+  PassiveTalentsProps,
+  ConstellationsProps,
 };

@@ -24,9 +24,18 @@ const NavBar = async () => {
             <Link href={`/artifact/${data.user.id}`}>
               <div className="text-xl">Artifacter</div>
             </Link>
+            <Separator orientation="vertical" />
+            <Link href="/data/characters">
+              <div className="text-xl">wiki</div>
+            </Link>
           </>
         ) : (
-          <></>
+          <>
+            <Separator orientation="vertical" />
+            <Link href="/data/characters">
+              <div className="text-xl">wiki</div>
+            </Link>
+          </>
         )}
       </div>
       {data.user == null ? (
