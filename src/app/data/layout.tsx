@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import Sidebar from "@/components/wiki/sidebar";
 
-export default async function WikiLayout({
+export default function WikiLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

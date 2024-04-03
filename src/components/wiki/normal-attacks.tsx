@@ -3,7 +3,7 @@ import SectionWrapper from "./section-wrapper";
 import { GetNormalAttackById } from "@/actions/getNormalAttackById";
 import parse from "html-react-parser";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { GetNormalAttackValuesById } from "@/actions/getNormalAttackValuesById";
+import { GetNormalAttackTextDataById } from "@/actions/getNormalAttackDataById";
 import {
   Table,
   TableBody,
@@ -16,7 +16,7 @@ import { FormatPercent } from "@/lib/utils";
 
 const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
   const normalAttack = await GetNormalAttackById(characterId);
-  const data = await GetNormalAttackValuesById(characterId);
+  const data = await GetNormalAttackTextDataById(characterId);
 
   const levels = [
     { value: "Lv.1", label: "level1" },
@@ -68,11 +68,7 @@ const NormalAttack: React.FC<TalentsProps> = async ({ characterId, title }) => {
                     {data.name}
                   </TableCell>
                   {levels.map((level) => (
-                    <TableCell key={level.label}>
-                      {Number.isInteger(data["level1"])
-                        ? data[level.label]
-                        : FormatPercent(data[level.label])}
-                    </TableCell>
+                    <TableCell key={level.label}>{data[level.label]}</TableCell>
                   ))}
                 </TableRow>
               ))}

@@ -3,7 +3,7 @@ import SectionWrapper from "./section-wrapper";
 import { GetElementalBurstById } from "@/actions/getElementalBurstById";
 import parse from "html-react-parser";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { GetElementalBurstValuesById } from "@/actions/getElementalBurstValuesById";
+import { GetElementalBurstTextDataById } from "@/actions/getElementalBurstDataById";
 import {
   Table,
   TableBody,
@@ -19,7 +19,7 @@ const ElementalBurst: React.FC<TalentsProps> = async ({
   title,
 }) => {
   const elementalBurst = await GetElementalBurstById(characterId);
-  const data = await GetElementalBurstValuesById(characterId);
+  const data = await GetElementalBurstTextDataById(characterId);
 
   const levels = [
     { value: "Lv.1", label: "level1" },
@@ -71,11 +71,7 @@ const ElementalBurst: React.FC<TalentsProps> = async ({
                     {data.name}
                   </TableCell>
                   {levels.map((level) => (
-                    <TableCell key={level.label}>
-                      {data.percent
-                        ? data[level.label].toFixed(1)
-                        : FormatPercent(data[level.label])}
-                    </TableCell>
+                    <TableCell key={level.label}>{data[level.label]}</TableCell>
                   ))}
                 </TableRow>
               ))}

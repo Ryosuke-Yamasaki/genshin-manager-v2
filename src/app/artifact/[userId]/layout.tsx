@@ -1,4 +1,4 @@
-export default async function ArtifacterLayout({
+export default function ArtifacterLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
