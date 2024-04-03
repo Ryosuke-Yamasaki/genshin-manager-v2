@@ -14,7 +14,6 @@ interface ArtifacterDataTableToolbarProps<TData> {
   types: ArtifactTypes[];
   sets: ArtifactSets[];
   mainStats: Stats[];
-  userId: string;
 }
 
 export function ArtifacterDataTableToolbar<TData>({
@@ -22,7 +21,6 @@ export function ArtifacterDataTableToolbar<TData>({
   types,
   sets,
   mainStats,
-  userId,
 }: ArtifacterDataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
@@ -79,7 +77,7 @@ export function ArtifacterDataTableToolbar<TData>({
         )}
       </div>
       <Button className="focus:shadow-inner" variant="outline" asChild>
-        <Link href={`${userId}/post/1/501`}>聖遺物を追加</Link>
+        <Link href="artifacter/post/1/501">聖遺物を追加</Link>
       </Button>
     </div>
   );

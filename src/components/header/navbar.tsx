@@ -18,25 +18,22 @@ const NavBar = async () => {
         <Link href="/">
           <div className="text-xl font-semibold">Genshin Manager</div>
         </Link>
-        {data.user?.id ? (
+        {data.user?.id && (
           <>
             <Separator orientation="vertical" />
-            <Link href={`/artifact/${data.user.id}`}>
+            <Link href={`/${data.user.id}/artifacter`}>
               <div className="text-xl">Artifacter</div>
             </Link>
             <Separator orientation="vertical" />
-            <Link href="/data/characters">
-              <div className="text-xl">wiki</div>
-            </Link>
-          </>
-        ) : (
-          <>
-            <Separator orientation="vertical" />
-            <Link href="/data/characters">
-              <div className="text-xl">wiki</div>
+            <Link href={`/${data.user.id}/calculator`}>
+              <div className="text-xl">DPS Checker</div>
             </Link>
           </>
         )}
+        <Separator orientation="vertical" />
+        <Link href="/data/characters">
+          <div className="text-xl">wiki</div>
+        </Link>
       </div>
       {data.user == null ? (
         <LoginWithGoogleButton />

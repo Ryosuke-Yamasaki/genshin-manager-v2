@@ -33,7 +33,6 @@ interface DataTableProps<TData, TValue> {
   types: ArtifactTypes[];
   sets: ArtifactSets[];
   mainStats: Stats[];
-  userId: string;
 }
 
 export function ArtifcaterDataTable<TData, TValue>({
@@ -42,7 +41,6 @@ export function ArtifcaterDataTable<TData, TValue>({
   types,
   sets,
   mainStats,
-  userId,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -66,7 +64,6 @@ export function ArtifcaterDataTable<TData, TValue>({
         types={types}
         sets={sets}
         mainStats={mainStats}
-        userId={userId}
       />
       <div className="rounded-md border">
         <Table>

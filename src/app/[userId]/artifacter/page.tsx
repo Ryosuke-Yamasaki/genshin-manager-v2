@@ -11,7 +11,6 @@ const ArtifactManagerPage = async ({
   params: { userId: string };
 }) => {
   const data = await GetArtifacters(params.userId);
-
   const types = await GetArtifactTypes();
   const sets = await GetArtifactSets();
   const stats = await GetArtifactMainStats();
@@ -24,7 +23,6 @@ const ArtifactManagerPage = async ({
         types={types}
         sets={sets}
         mainStats={stats.map((stat) => stat.Stats)}
-        userId={params.userId}
       />
     </div>
   );

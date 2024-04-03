@@ -1,4 +1,4 @@
-export default function ArtifacterLayout({
+export default function UserLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
