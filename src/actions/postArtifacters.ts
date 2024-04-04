@@ -1,12 +1,12 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { postArtifacterSchema } from "@/lib/zodschema";
+import { PostArtifacterSchema } from "@/lib/zodschema";
 import { cookies } from "next/headers";
 import { z } from "zod";
 
 export const PostArtifacters = async (
-  values: z.infer<typeof postArtifacterSchema>
+  values: z.infer<typeof PostArtifacterSchema>
 ) => {
   const { userId, artifactId, typeId, setId, mainStatId, subOptions } = values;
 
