@@ -23,7 +23,7 @@ const SelectConstellation: React.FC<SelectConstellationProps> = ({
         <FormItem>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger2 className="px-2 py-0.5">
+              <SelectTrigger2 className="px-2 py-0.5 text-sm">
                 <SelectValue aria-label={field.value}>
                   {field.value !== "0"
                     ? constellations.find(

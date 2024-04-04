@@ -33,7 +33,7 @@ const SelectLevel: React.FC<SelectLevelProps> = ({ levels, formName }) => {
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-fit justify-between",
+                    "w-fit h-fit py-1 px-2 justify-between",
                     !field.value && "text-muted-foreground"
                   )}
                 >
@@ -46,9 +46,9 @@ const SelectLevel: React.FC<SelectLevelProps> = ({ levels, formName }) => {
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="p-0 w-24">
+            <PopoverContent className="p-0 w-20">
               <Command>
-                <CommandInput placeholder="..." className="h-fit py-2" />
+                <CommandInput placeholder="..." className="h-fit py-1.5" />
                 <CommandEmpty>No Result.</CommandEmpty>
                 <CommandGroup className="max-h-40 overflow-auto">
                   {levels.map((level) => (

@@ -11,10 +11,16 @@ const Character: React.FC<CharacterProps> = ({
   characterImageUrls,
   characterImageUrl,
 }) => {
+  const talents = [
+    { name: "normalAttackLevel", label: "通常" },
+    { name: "elementalSkillLevel", label: "スキル" },
+    { name: "elementalBurstLevel", label: "爆発" },
+  ];
+
   return (
-    <div>
+    <div className="border rounded mx-auto py-2 w-52 space-y-2">
       <div className="flex items-center justify-center space-x-4">
-        <div>
+        <div className="space-y-2">
           <div>{character.name}</div>
           <SelectLevel levels={levels} formName="characterLevelId" />
           <SelectConstellation constellations={constellations} />
@@ -24,10 +30,10 @@ const Character: React.FC<CharacterProps> = ({
           characterImageUrl={characterImageUrl}
         />
       </div>
-      <div className="grid grid-cols-3">
-        <SelectTalentLevel formName="normalAttackLevel" />
-        <SelectTalentLevel formName="elementalSkillLevel" />
-        <SelectTalentLevel formName="elementalBurstLevel" />
+      <div className="flex items-center justify-center space-x-2">
+        {talents.map((talent) => (
+          <SelectTalentLevel name={talent.name} label={talent.label} />
+        ))}
       </div>
       <div>Selectbuff</div>
     </div>

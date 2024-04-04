@@ -1,5 +1,10 @@
 import { SelectTalentLevelProps } from "@/lib/interface";
-import { FormControl, FormField, FormItem } from "@/components/ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
@@ -9,7 +14,10 @@ import {
 } from "@/components/ui/select";
 import { useFormContext } from "react-hook-form";
 
-const SelectTalentLevel: React.FC<SelectTalentLevelProps> = ({ formName }) => {
+const SelectTalentLevel: React.FC<SelectTalentLevelProps> = ({
+  name,
+  label,
+}) => {
   const { control } = useFormContext();
 
   const levels = [
@@ -28,12 +36,13 @@ const SelectTalentLevel: React.FC<SelectTalentLevelProps> = ({ formName }) => {
   return (
     <FormField
       control={control}
-      name={formName}
+      name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="space-y-0">
+          <FormLabel className="text-xs ml-1">{label}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger3 className="pl-2 pr-1 py-0.5">
+              <SelectTrigger3 className="pl-2 pr-1 py-0.5 text-sm">
                 <SelectValue />
               </SelectTrigger3>
             </FormControl>

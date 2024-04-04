@@ -233,7 +233,8 @@ interface SelectConstellationProps {
 }
 
 interface SelectTalentLevelProps {
-  formName: string;
+  name: string;
+  label: string;
 }
 
 interface SelectCharacterProps {
