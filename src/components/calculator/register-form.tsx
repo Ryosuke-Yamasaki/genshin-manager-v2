@@ -12,7 +12,13 @@ import { Button } from "../ui/button";
 
 const TeamCompositionRegisterForm: React.FC<
   TeamCompositionRegisterFormProps
-> = ({ character, levels, constellations }) => {
+> = ({
+  character,
+  levels,
+  constellations,
+  characterImageUrls,
+  characterImageUrl,
+}) => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof PostTeamCompositionSchema>>({
@@ -49,6 +55,8 @@ const TeamCompositionRegisterForm: React.FC<
           character={character}
           levels={levels}
           constellations={constellations}
+          characterImageUrls={characterImageUrls}
+          characterImageUrl={characterImageUrl}
         />
         <div>
           <div>weapon</div>

@@ -9,19 +9,24 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { SelectDialogProps } from "@/lib/interface";
 
-const SelectDialog = ({ children, headerTitle, icon }: SelectDialogProps) => {
+const SelectDialog = ({
+  children,
+  className,
+  headerTitle,
+  icon,
+}: SelectDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Avatar className="h-32 w-32">
+        <Avatar className={className}>
           <AvatarImage src={icon?.url} />
-          <AvatarFallback>{icon?.artifactId}</AvatarFallback>
+          <AvatarFallback>{icon?.id}</AvatarFallback>
         </Avatar>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-w-4/5 max-h-[80%] overflow-auto">
         <DialogHeader>
           <DialogTitle>{headerTitle}</DialogTitle>
-          <DialogDescription className="grid grid-cols-8 justify-items-center gap-2">
+          <DialogDescription className="grid grid-cols-8 gap-2">
             {children}
           </DialogDescription>
         </DialogHeader>

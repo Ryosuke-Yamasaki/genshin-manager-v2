@@ -10,21 +10,21 @@ const SelectArtifact: React.FC<SelectArtifactProps> = ({
   icon,
 }) => {
   return (
-    <SelectDialog headerTitle="聖遺物の選択" icon={icon}>
+    <SelectDialog headerTitle="聖遺物の選択" className="w-32 h-32" icon={icon}>
       {icons
-        ?.filter((icon) => icon.artifactId.toString()[0] == typeId)
+        ?.filter((icon) => icon.id.toString()[0] == typeId)
         .map((icon) => (
           <Button
             variant="outline"
             size="icon"
             asChild
-            key={icon.artifactId}
+            key={icon.id}
             className="h-20 w-20"
           >
-            <Link href={icon.artifactId.toString().slice(1)}>
+            <Link href={icon.id.toString().slice(1)}>
               <Avatar className="h-20 w-20">
                 <AvatarImage src={icon.url} />
-                <AvatarFallback>{icon.artifactId}</AvatarFallback>
+                <AvatarFallback>{icon.id}</AvatarFallback>
               </Avatar>
             </Link>
           </Button>

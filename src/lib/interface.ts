@@ -19,7 +19,7 @@ interface ArtifactMainStats {
 }
 
 interface ArtifactIcons {
-  artifactId: number;
+  id: number;
   url: string;
 }
 
@@ -67,8 +67,9 @@ interface SelectArtifactProps {
 
 interface SelectDialogProps {
   children: React.ReactNode;
+  className: string;
   headerTitle: string;
-  icon: { artifactId: number; url: string };
+  icon: { id: number; url: string };
 }
 
 interface SubOptionFormProps {
@@ -147,6 +148,12 @@ interface Character {
   };
 }
 
+interface CharacterImageUrl {
+  characterId: number;
+  icon: string;
+  gacha: string;
+}
+
 interface SectionWrapperProps {
   children: React.ReactNode;
   headerTitle: string;
@@ -155,7 +162,7 @@ interface SectionWrapperProps {
 
 interface ProfileProps {
   character: Character;
-  url: { characterId: number; icon: string; gacha: string };
+  url: CharacterImageUrl;
   title: { label: string; value: string };
 }
 interface StatsProps {
@@ -191,7 +198,7 @@ interface Levels {
   valueText: string;
 }
 
-interface Constellations {
+interface Constellation {
   id: number;
   characterId: number;
   rank: number;
@@ -203,13 +210,17 @@ interface Constellations {
 interface TeamCompositionRegisterFormProps {
   character: Character;
   levels: Levels[];
-  constellations: Constellations[];
+  constellations: Constellation[];
+  characterImageUrls: CharacterImageUrl[];
+  characterImageUrl: CharacterImageUrl;
 }
 
 interface CharacterProps {
   character: Character;
   levels: Levels[];
-  constellations: Constellations[];
+  constellations: Constellation[];
+  characterImageUrls: CharacterImageUrl[];
+  characterImageUrl: CharacterImageUrl;
 }
 
 interface SelectLevelProps {
@@ -218,11 +229,16 @@ interface SelectLevelProps {
 }
 
 interface SelectConstellationProps {
-  constellations: Constellations[];
+  constellations: Constellation[];
 }
 
 interface SelectTalentLevelProps {
   formName: string;
+}
+
+interface SelectCharacterProps {
+  characterImageUrls: CharacterImageUrl[];
+  characterImageUrl: CharacterImageUrl;
 }
 
 export type {
@@ -244,6 +260,7 @@ export type {
   Genders,
   Regions,
   Character,
+  CharacterImageUrl,
   SectionWrapperProps,
   ProfileProps,
   StatsProps,
@@ -252,10 +269,11 @@ export type {
   PassiveTalentsProps,
   ConstellationsProps,
   Levels,
-  Constellations,
+  Constellation,
   TeamCompositionRegisterFormProps,
   CharacterProps,
   SelectLevelProps,
   SelectConstellationProps,
   SelectTalentLevelProps,
+  SelectCharacterProps,
 };
