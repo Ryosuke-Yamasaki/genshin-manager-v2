@@ -32,7 +32,11 @@ const Character: React.FC<CharacterProps> = ({
       </div>
       <div className="flex items-center justify-center space-x-2">
         {talents.map((talent) => (
-          <SelectTalentLevel name={talent.name} label={talent.label} />
+          <SelectTalentLevel
+            name={talent.name}
+            label={talent.label}
+            key={talent.name}
+          />
         ))}
       </div>
       <div>Selectbuff</div>
