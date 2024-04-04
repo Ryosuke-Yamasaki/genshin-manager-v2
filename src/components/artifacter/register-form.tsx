@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { Form } from "../ui/form";
-import { postArtifacterSchema } from "@/lib/zodschema";
+import { PostArtifacterSchema } from "@/lib/zodschema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArtifacterRegisterFormProps } from "@/lib/interface";
@@ -42,10 +42,10 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
     (stat) => stat.typeId == typeId
   )?.value;
 
-  const form = useForm<z.infer<typeof postArtifacterSchema>>({
-    resolver: zodResolver(postArtifacterSchema),
+  const form = useForm<z.infer<typeof PostArtifacterSchema>>({
+    resolver: zodResolver(PostArtifacterSchema),
     defaultValues: {
-      userId: userId,
+      userId,
       typeId,
       setId,
       artifactId: typeId + setId,
@@ -59,7 +59,7 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof postArtifacterSchema>) => {
+  const onSubmit = (values: z.infer<typeof PostArtifacterSchema>) => {
     startTransition(async () => {
       const data = await PostArtifacters(values);
       const { id } = data;

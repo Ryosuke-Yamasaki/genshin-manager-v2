@@ -10,6 +10,7 @@ const CalculatorPage = () => {
         <div>sands</div>
         <div>goblet</div>
         <div>circlet</div>
+        <div>buffs</div>
       </div>
     </div>
   );

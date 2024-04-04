@@ -183,6 +183,44 @@ interface ConstellationsProps {
   title: { label: string; value: string };
 }
 
+interface Levels {
+  id: number;
+  level: number;
+  ascensionRank: number;
+  value: string;
+  valueText: string;
+}
+
+interface Constellations {
+  id: number;
+  characterId: number;
+  rank: number;
+  title: string;
+  description: string;
+  iconUrl: string;
+}
+
+interface TeamCompositionRegisterFormProps {
+  character: Character;
+  levels: Levels[];
+  constellations: Constellations[];
+}
+
+interface CharacterProps {
+  character: Character;
+  levels: Levels[];
+  constellations: Constellations[];
+}
+
+interface SelectLevelProps {
+  levels: Levels[];
+  formName: string;
+}
+
+interface SelectConstellationProps {
+  constellations: Constellations[];
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -209,4 +247,10 @@ export type {
   TalentsProps,
   PassiveTalentsProps,
   ConstellationsProps,
+  Levels,
+  Constellations,
+  TeamCompositionRegisterFormProps,
+  CharacterProps,
+  SelectLevelProps,
+  SelectConstellationProps,
 };

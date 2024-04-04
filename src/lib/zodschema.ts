@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const postArtifacterSchema = z.object({
+const PostArtifacterSchema = z.object({
   userId: z.string(),
   typeId: z.string(),
   setId: z.string(),
@@ -9,7 +9,7 @@ export const postArtifacterSchema = z.object({
   subOptions: z.array(z.object({ statId: z.string(), value: z.string() })),
 });
 
-export const ArtifacterSchema = z.object({
+const ArtifacterSchema = z.object({
   id: z.string(),
   userId: z.string(),
   score: z.number(),
@@ -18,3 +18,24 @@ export const ArtifacterSchema = z.object({
   typeId: z.number(),
   mainStatId: z.number(),
 });
+
+const PostTeamCompositionSchema = z.object({
+  name: z.string(),
+  characterId: z.string(),
+  characterLevelId: z.string(),
+  normalAttackLevel: z.string(),
+  elementalSkillLevel: z.string(),
+  elementalBurstLevel: z.string(),
+  constellationRank: z.string(),
+  weaponId: z.string(),
+  weaponLevelId: z.string(),
+  refinementRank: z.string(),
+  flowerId: z.string(),
+  plumeId: z.string(),
+  sandId: z.string(),
+  gobletId: z.string(),
+  circletId: z.string(),
+  buffersId: z.array(z.string()),
+});
+
+export { PostArtifacterSchema, ArtifacterSchema, PostTeamCompositionSchema };
