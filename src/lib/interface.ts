@@ -221,6 +221,10 @@ interface SelectConstellationProps {
   constellations: Constellations[];
 }
 
+interface SelectTalentLevelProps {
+  formName: string;
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -253,4 +257,5 @@ export type {
   CharacterProps,
   SelectLevelProps,
   SelectConstellationProps,
+  SelectTalentLevelProps,
 };

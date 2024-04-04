@@ -1,6 +1,7 @@
 import { CharacterProps } from "@/lib/interface";
 import SelectLevel from "./select-level";
 import SelectConstellation from "./select-constellation";
+import SelectTalentLevel from "./select-talent-level";
 
 const Character: React.FC<CharacterProps> = ({
   character,
@@ -17,10 +18,10 @@ const Character: React.FC<CharacterProps> = ({
         </div>
         <div>CharacterIcon</div>
       </div>
-      <div className="grid grid-cols-3 gap-4">
-        <div>NALevel</div>
-        <div>ESLevel</div>
-        <div>EBLevel</div>
+      <div className="grid grid-cols-3">
+        <SelectTalentLevel formName="normalAttackLevel" />
+        <SelectTalentLevel formName="elementalSkillLevel" />
+        <SelectTalentLevel formName="elementalBurstLevel" />
       </div>
       <div>Selectbuff</div>
     </div>
