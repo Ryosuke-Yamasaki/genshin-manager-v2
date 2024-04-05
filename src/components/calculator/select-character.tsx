@@ -8,16 +8,12 @@ const SelectCharacter: React.FC<SelectCharacterProps> = ({
   characterImageUrls,
   characterImageUrl,
 }) => {
-  const IconUrl = {
-    id: characterImageUrl.characterId,
-    url: characterImageUrl.icon,
-  };
-
   return (
     <SelectDialog
       headerTitle="キャラクターの選択"
       className="w-24 h-24 border rounded"
-      icon={IconUrl}
+      iconId={characterImageUrl.characterId}
+      iconUrl={characterImageUrl.icon}
     >
       {characterImageUrls.map((url) => (
         <Button

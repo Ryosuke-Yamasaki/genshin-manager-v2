@@ -69,7 +69,7 @@ const ArtifacterRegisterForm: React.FC<ArtifacterRegisterFormProps> = ({
 
   const mainStatValue = useArtifactMainStatById(form.watch("mainStatId"));
   const artifact = useArtifactById(Number(typeId + setId));
-  const icon = icons.find((icon) => icon.id === Number(typeId + setId));
+  const icon = icons.find((icon) => icon.artifactId === Number(typeId + setId));
 
   return (
     <Form {...form}>

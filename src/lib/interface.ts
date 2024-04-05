@@ -19,7 +19,7 @@ interface ArtifactMainStats {
 }
 
 interface ArtifactIcons {
-  id: number;
+  artifactId: number;
   url: string;
 }
 
@@ -69,7 +69,8 @@ interface SelectDialogProps {
   children: React.ReactNode;
   className: string;
   headerTitle: string;
-  icon: { id: number; url: string };
+  iconId: number;
+  iconUrl: string;
 }
 
 interface SubOptionFormProps {

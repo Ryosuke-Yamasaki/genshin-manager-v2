@@ -13,14 +13,15 @@ const SelectDialog = ({
   children,
   className,
   headerTitle,
-  icon,
+  iconId,
+  iconUrl,
 }: SelectDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger>
         <Avatar className={className}>
-          <AvatarImage src={icon?.url} />
-          <AvatarFallback>{icon?.id}</AvatarFallback>
+          <AvatarImage src={iconUrl} />
+          <AvatarFallback>{iconId}</AvatarFallback>
         </Avatar>
       </DialogTrigger>
       <DialogContent className="max-w-4/5 max-h-[80%] overflow-auto">
