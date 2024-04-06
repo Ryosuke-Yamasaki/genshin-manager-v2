@@ -1,37 +1,28 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
+import { Dialog, DialogContent2, DialogTrigger } from "../ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { SelectDialogProps } from "@/lib/interface";
+import { cn } from "@/lib/utils";
 
 const SelectDialog = ({
   children,
-  className,
-  headerTitle,
+  iconSize,
   iconId,
   iconUrl,
+  className,
 }: SelectDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Avatar className={className}>
+        <Avatar className={iconSize}>
           <AvatarImage src={iconUrl} />
           <AvatarFallback>{iconId}</AvatarFallback>
         </Avatar>
       </DialogTrigger>
-      <DialogContent className="max-w-4/5 max-h-[80%] overflow-auto">
-        <DialogHeader>
-          <DialogTitle>{headerTitle}</DialogTitle>
-          <DialogDescription className="grid grid-cols-8 gap-2">
-            {children}
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
+      <DialogContent2
+        className={cn("max-w-[80%] max-h-[80%] overflow-auto", className)}
+      >
+        {children}
+      </DialogContent2>
     </Dialog>
   );
 };

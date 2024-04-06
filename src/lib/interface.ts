@@ -67,10 +67,10 @@ interface SelectArtifactProps {
 
 interface SelectDialogProps {
   children: React.ReactNode;
-  className: string;
-  headerTitle: string;
+  iconSize: string;
   iconId: number;
   iconUrl: string;
+  className?: string;
 }
 
 interface SubOptionFormProps {

@@ -11,10 +11,10 @@ const SelectArtifact: React.FC<SelectArtifactProps> = ({
 }) => {
   return (
     <SelectDialog
-      headerTitle="聖遺物の選択"
-      className="w-32 h-32"
+      iconSize="w-32 h-32"
       iconId={icon.artifactId}
       iconUrl={icon.url}
+      className="grid grid-cols-6"
     >
       {icons
         .filter((url) => url.artifactId.toString()[0] == typeId)

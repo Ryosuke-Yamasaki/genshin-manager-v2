@@ -10,10 +10,10 @@ const SelectCharacter: React.FC<SelectCharacterProps> = ({
 }) => {
   return (
     <SelectDialog
-      headerTitle="キャラクターの選択"
-      className="w-24 h-24 border rounded"
+      iconSize="w-24 h-24 border rounded"
       iconId={characterImageUrl.characterId}
       iconUrl={characterImageUrl.icon}
+      className="grid grid-cols-10"
     >
       {characterImageUrls.map((url) => (
         <Button
