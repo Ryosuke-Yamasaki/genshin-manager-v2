@@ -18,7 +18,7 @@ const Character: React.FC<CharacterProps> = ({
   ];
 
   return (
-    <div className="border rounded mx-auto py-2 w-52 space-y-2">
+    <div className="border rounded-lg mx-auto py-2 w-52 space-y-2">
       <div className="flex items-center justify-center space-x-4">
         <div className="space-y-2">
           <div>{character.name}</div>
@@ -39,7 +39,7 @@ const Character: React.FC<CharacterProps> = ({
           />
         ))}
       </div>
-      <div>Selectbuff</div>
+      <div className="sr-only">Selectbuff</div>
     </div>
   );
 };

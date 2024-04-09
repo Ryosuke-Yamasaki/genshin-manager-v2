@@ -1,16 +1,14 @@
 import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 
-export const GetArtifacters = async (id: string) => {
+export const GetWeaponImageUrlsByTypeId = async (id: number[]) => {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
   const { data, error } = await supabase
-    .from("Artifacters")
-    .select(
-      "*,ArtifacterSubOptions(*,Stats(*)),ArtifactTypes(*),ArtifactSets(*),Stats(*),ArtifactIcons!inner(*)"
-    )
-    .eq("userId", id);
+    .from("WeaponImageUrls")
+    .select()
+    .in("weaponId", id);
 
   if (error) throw console.log(error);
 

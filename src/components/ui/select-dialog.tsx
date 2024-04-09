@@ -13,8 +13,8 @@ const SelectDialog = ({
   return (
     <Dialog>
       <DialogTrigger>
-        <Avatar className={iconSize}>
-          <AvatarImage src={iconUrl} />
+        <Avatar className={cn("items-center justify-center mx-auto", iconSize)}>
+          <AvatarImage src={iconUrl} className="w-fit h-fit" />
           <AvatarFallback>{iconId}</AvatarFallback>
         </Avatar>
       </DialogTrigger>

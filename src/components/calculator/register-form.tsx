@@ -9,6 +9,7 @@ import { PostTeamCompositionSchema } from "@/lib/zodschema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { Button } from "../ui/button";
+import Equipments from "./equipments";
 
 const TeamCompositionRegisterForm: React.FC<
   TeamCompositionRegisterFormProps
@@ -18,6 +19,8 @@ const TeamCompositionRegisterForm: React.FC<
   constellations,
   characterImageUrls,
   characterImageUrl,
+  weapons,
+  artifacts,
 }) => {
   const [isPending, startTransition] = useTransition();
 
@@ -58,14 +61,7 @@ const TeamCompositionRegisterForm: React.FC<
           characterImageUrls={characterImageUrls}
           characterImageUrl={characterImageUrl}
         />
-        <div>
-          <div>weapon</div>
-          <div>flower</div>
-          <div>plume</div>
-          <div>sands</div>
-          <div>goblet</div>
-          <div>circlet</div>
-        </div>
+        <Equipments weapons={weapons} artifacts={artifacts} />
         <div>buffs</div>
         <Button
           variant="outline"

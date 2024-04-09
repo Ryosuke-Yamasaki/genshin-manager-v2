@@ -68,7 +68,7 @@ interface SelectArtifactProps {
 interface SelectDialogProps {
   children: React.ReactNode;
   iconSize: string;
-  iconId: number;
+  iconId: number | string;
   iconUrl: string;
   className?: string;
 }
@@ -88,6 +88,7 @@ interface Artifacter {
   ArtifacterSubOptions: { statId: number; value: number }[];
   ArtifactTypes: ArtifactTypes;
   ArtifactSets: ArtifactSets;
+  ArtifactIcons: ArtifactIcons;
   Stats: Stats;
 }
 
@@ -208,12 +209,30 @@ interface Constellation {
   iconUrl: string;
 }
 
+interface Weapon {
+  id: number;
+  name: string;
+  description: string;
+  weaponTypeId: number;
+  star: number;
+  baseAttackId: number;
+  subStatId: number;
+  WeaponImageUrls: WeaponImageUrl;
+}
+
+interface WeaponImageUrl {
+  weaponId: number;
+  url: string;
+}
+
 interface TeamCompositionRegisterFormProps {
   character: Character;
   levels: Levels[];
   constellations: Constellation[];
   characterImageUrls: CharacterImageUrl[];
   characterImageUrl: CharacterImageUrl;
+  weapons: Weapon[];
+  artifacts: Artifacter[];
 }
 
 interface CharacterProps {
@@ -241,6 +260,19 @@ interface SelectTalentLevelProps {
 interface SelectCharacterProps {
   characterImageUrls: CharacterImageUrl[];
   characterImageUrl: CharacterImageUrl;
+}
+
+interface EquipmentsProps {
+  weapons: Weapon[];
+  artifacts: Artifacter[];
+}
+
+interface SelectEquipmentWeapperProps {
+  children: React.ReactNode;
+  formName: string;
+  iconSize?: string;
+  iconId: string;
+  iconUrl: string;
 }
 
 export type {
@@ -272,10 +304,14 @@ export type {
   ConstellationsProps,
   Levels,
   Constellation,
+  Weapon,
+  WeaponImageUrl,
   TeamCompositionRegisterFormProps,
   CharacterProps,
   SelectLevelProps,
   SelectConstellationProps,
   SelectTalentLevelProps,
   SelectCharacterProps,
+  EquipmentsProps,
+  SelectEquipmentWeapperProps,
 };
