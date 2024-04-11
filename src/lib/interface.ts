@@ -71,6 +71,7 @@ interface SelectDialogProps {
   iconId: number | string;
   iconUrl: string;
   className?: string;
+  iconLabel?: string;
 }
 
 interface SubOptionFormProps {
@@ -148,6 +149,9 @@ interface Character {
     [K: string]: number | Stats;
     Stats: Stats;
   };
+  Constellations: Constellation[];
+  CharacterImageUrls: CharacterImageUrl;
+  PassiveTalents: PassiveTalent[];
 }
 
 interface CharacterImageUrl {
@@ -209,6 +213,14 @@ interface Constellation {
   iconUrl: string;
 }
 
+interface PassiveTalent {
+  id: number;
+  characterId: number;
+  title: string;
+  description: string;
+  iconUrl: string;
+}
+
 interface Weapon {
   id: number;
   name: string;
@@ -228,9 +240,7 @@ interface WeaponImageUrl {
 interface TeamCompositionRegisterFormProps {
   character: Character;
   levels: Levels[];
-  constellations: Constellation[];
   characterImageUrls: CharacterImageUrl[];
-  characterImageUrl: CharacterImageUrl;
   weapons: Weapon[];
   artifacts: Artifacter[];
 }
@@ -275,6 +285,14 @@ interface SelectEquipmentWeapperProps {
   iconUrl: string;
 }
 
+interface BuffsProps {
+  passiveTalents: PassiveTalent[];
+}
+
+interface SelectPassiveTalentProps {
+  passiveTalents: PassiveTalent[];
+}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -304,6 +322,7 @@ export type {
   ConstellationsProps,
   Levels,
   Constellation,
+  PassiveTalent,
   Weapon,
   WeaponImageUrl,
   TeamCompositionRegisterFormProps,
@@ -314,4 +333,6 @@ export type {
   SelectCharacterProps,
   EquipmentsProps,
   SelectEquipmentWeapperProps,
+  BuffsProps,
+  SelectPassiveTalentProps,
 };

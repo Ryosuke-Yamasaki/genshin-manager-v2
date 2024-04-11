@@ -10,18 +10,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { Button } from "../ui/button";
 import Equipments from "./equipments";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import Buffs from "./buffs";
 
 const TeamCompositionRegisterForm: React.FC<
   TeamCompositionRegisterFormProps
-> = ({
-  character,
-  levels,
-  constellations,
-  characterImageUrls,
-  characterImageUrl,
-  weapons,
-  artifacts,
-}) => {
+> = ({ character, levels, characterImageUrls, weapons, artifacts }) => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof PostTeamCompositionSchema>>({
@@ -42,7 +36,12 @@ const TeamCompositionRegisterForm: React.FC<
       sandId: "",
       gobletId: "",
       circletId: "",
-      buffersId: [],
+      buffersId: {
+        passiveTalents: [],
+        characters: [],
+        weapons: [],
+        artifacts: [],
+      },
     },
   });
 
@@ -53,16 +52,7 @@ const TeamCompositionRegisterForm: React.FC<
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex space-x-4">
-        <Character
-          character={character}
-          levels={levels}
-          constellations={constellations}
-          characterImageUrls={characterImageUrls}
-          characterImageUrl={characterImageUrl}
-        />
-        <Equipments weapons={weapons} artifacts={artifacts} />
-        <div>buffs</div>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <Button
           variant="outline"
           size="free"
@@ -72,6 +62,29 @@ const TeamCompositionRegisterForm: React.FC<
         >
           登録
         </Button>
+        <div className="flex space-x-4">
+          <Character
+            character={character}
+            levels={levels}
+            constellations={character.Constellations}
+            characterImageUrls={characterImageUrls}
+            characterImageUrl={character.CharacterImageUrls}
+          />
+          <div className="p-2 border rounded-lg w-[550px]">
+            <Tabs defaultValue="equip" className="space-y-4">
+              <TabsList>
+                <TabsTrigger value="equip">装備</TabsTrigger>
+                <TabsTrigger value="buff">バフ</TabsTrigger>
+              </TabsList>
+              <TabsContent value="equip">
+                <Equipments weapons={weapons} artifacts={artifacts} />
+              </TabsContent>
+              <TabsContent value="buff">
+                <Buffs passiveTalents={character.PassiveTalents} />
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
       </form>
     </Form>
   );

@@ -9,6 +9,7 @@ const SelectDialog = ({
   iconId,
   iconUrl,
   className,
+  iconLabel,
 }: SelectDialogProps) => {
   return (
     <Dialog>
@@ -17,6 +18,7 @@ const SelectDialog = ({
           <AvatarImage src={iconUrl} className="w-fit h-fit" />
           <AvatarFallback>{iconId}</AvatarFallback>
         </Avatar>
+        {iconLabel && <div className="text-sm border-t">{iconLabel}</div>}
       </DialogTrigger>
       <DialogContent2
         className={cn("max-w-[80%] max-h-[80%] overflow-auto", className)}

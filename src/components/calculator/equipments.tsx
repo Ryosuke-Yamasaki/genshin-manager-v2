@@ -46,7 +46,7 @@ const Equipments: React.FC<EquipmentsProps> = ({ weapons, artifacts }) => {
   ];
 
   return (
-    <div className="p-2 grid grid-cols-6 gap-2 border rounded-lg">
+    <div className="flex space-x-2">
       <div className="flex flex-col border rounded h-fit self-center">
         <SelectEquipmentWeapper
           formName="weaponId"

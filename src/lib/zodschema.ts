@@ -35,7 +35,12 @@ const PostTeamCompositionSchema = z.object({
   sandId: z.string(),
   gobletId: z.string(),
   circletId: z.string(),
-  buffersId: z.array(z.string()),
+  buffersId: z.object({
+    passiveTalents: z.array(z.string()),
+    characters: z.array(z.string()),
+    weapons: z.array(z.string()),
+    artifacts: z.array(z.string()),
+  }),
 });
 
 export { PostArtifacterSchema, ArtifacterSchema, PostTeamCompositionSchema };
