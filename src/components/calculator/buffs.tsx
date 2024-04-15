@@ -1,12 +1,12 @@
 import { BuffsProps } from "@/lib/interface";
-import SelectDialog from "../ui/select-dialog";
-import SelectPassiveTalent from "./select-passiveTalent";
+import SelectPassiveTalentBuff from "./select-passiveTalent-buff";
+import SelectCharacterBuff from "./select-character-buff";
 
-const Buffs: React.FC<BuffsProps> = ({ passiveTalents }) => {
+const Buffs: React.FC<BuffsProps> = ({ passiveTalents, buffers }) => {
   return (
     <div className="flex space-x-2">
-      <SelectPassiveTalent passiveTalents={passiveTalents} />
-      <div>characterBuff</div>
+      <SelectPassiveTalentBuff passiveTalents={passiveTalents} />
+      <SelectCharacterBuff buffers={buffers} />
       <div>weaponBuff</div>
       <div>artifactBuff</div>
       <div>resonaneceBuff</div>
@@ -16,4 +16,3 @@ const Buffs: React.FC<BuffsProps> = ({ passiveTalents }) => {
 };
 
 export default Buffs;
-//各バフでコンポーネントで分ける

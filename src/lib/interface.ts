@@ -237,12 +237,23 @@ interface WeaponImageUrl {
   url: string;
 }
 
+interface BuffCharacter {
+  id: number;
+  characterId: number;
+  title: string;
+  description: string;
+}
+
 interface TeamCompositionRegisterFormProps {
   character: Character;
   levels: Levels[];
   characterImageUrls: CharacterImageUrl[];
   weapons: Weapon[];
   artifacts: Artifacter[];
+  buffers: {
+    BuffCharacters: BuffCharacter[];
+    CharacterImageUrls: CharacterImageUrl | null;
+  }[];
 }
 
 interface CharacterProps {
@@ -287,10 +298,21 @@ interface SelectEquipmentWeapperProps {
 
 interface BuffsProps {
   passiveTalents: PassiveTalent[];
+  buffers: {
+    BuffCharacters: BuffCharacter[];
+    CharacterImageUrls: CharacterImageUrl | null;
+  }[];
 }
 
-interface SelectPassiveTalentProps {
+interface SelectPassiveTalentBuffProps {
   passiveTalents: PassiveTalent[];
+}
+
+interface SelectCharacterBuffProps {
+  buffers: {
+    BuffCharacters: BuffCharacter[];
+    CharacterImageUrls: CharacterImageUrl | null;
+  }[];
 }
 
 export type {
@@ -325,6 +347,7 @@ export type {
   PassiveTalent,
   Weapon,
   WeaponImageUrl,
+  BuffCharacter,
   TeamCompositionRegisterFormProps,
   CharacterProps,
   SelectLevelProps,
@@ -334,5 +357,6 @@ export type {
   EquipmentsProps,
   SelectEquipmentWeapperProps,
   BuffsProps,
-  SelectPassiveTalentProps,
+  SelectPassiveTalentBuffProps,
+  SelectCharacterBuffProps,
 };

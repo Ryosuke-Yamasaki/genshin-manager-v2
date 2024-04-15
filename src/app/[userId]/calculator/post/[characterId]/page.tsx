@@ -1,4 +1,5 @@
 import { GetArtifacters } from "@/actions/getArtifacters";
+import { GetBuffCharacters } from "@/actions/getBuffCharacters";
 import { GetCharacterById } from "@/actions/getCharacterById";
 import { GetCharacterImageUrls } from "@/actions/getCharacterImageUrls";
 import { GetLevels } from "@/actions/getLevels";
@@ -15,6 +16,7 @@ const TeamCompositionPage = async ({
   const characterImageUrls = await GetCharacterImageUrls();
   const weapons = await GetWeaponsByTypeId(character.weaponTypeId.toString());
   const artifacts = await GetArtifacters(params.userId);
+  const buffCharacters = await GetBuffCharacters();
 
   return (
     <div className="space-y-4">
@@ -24,6 +26,7 @@ const TeamCompositionPage = async ({
         characterImageUrls={characterImageUrls}
         weapons={weapons}
         artifacts={artifacts}
+        buffers={buffCharacters}
       />
       <div>
         <div>Stats</div>

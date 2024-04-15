@@ -1,6 +1,6 @@
 import { Dialog, DialogContent2, DialogTrigger } from "../ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { SelectPassiveTalentProps } from "@/lib/interface";
+import { SelectPassiveTalentBuffProps } from "@/lib/interface";
 import { FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { useFormContext } from "react-hook-form";
 import { Checkbox } from "../ui/checkbox";
@@ -8,7 +8,7 @@ import parse from "html-react-parser";
 import { z } from "zod";
 import { PostTeamCompositionSchema } from "@/lib/zodschema";
 
-const SelectPassiveTalent: React.FC<SelectPassiveTalentProps> = ({
+const SelectPassiveTalentBuff: React.FC<SelectPassiveTalentBuffProps> = ({
   passiveTalents,
 }) => {
   const { control } =
@@ -18,10 +18,7 @@ const SelectPassiveTalent: React.FC<SelectPassiveTalentProps> = ({
     <Dialog>
       <DialogTrigger className="border rounded">
         <Avatar className="w-20 h-20 items-center justify-center mx-auto">
-          <AvatarImage
-            src={passiveTalents[0].iconUrl}
-            className="w-fit h-fit"
-          />
+          <AvatarImage src={passiveTalents[0].iconUrl} className="w-16 h-16" />
           <AvatarFallback>{passiveTalents[0].id}</AvatarFallback>
         </Avatar>
         <div className="text-sm border-t">固有天賦</div>
@@ -63,4 +60,4 @@ const SelectPassiveTalent: React.FC<SelectPassiveTalentProps> = ({
   );
 };
 
-export default SelectPassiveTalent;
+export default SelectPassiveTalentBuff;

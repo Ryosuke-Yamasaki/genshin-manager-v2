@@ -15,7 +15,14 @@ import Buffs from "./buffs";
 
 const TeamCompositionRegisterForm: React.FC<
   TeamCompositionRegisterFormProps
-> = ({ character, levels, characterImageUrls, weapons, artifacts }) => {
+> = ({
+  character,
+  levels,
+  characterImageUrls,
+  weapons,
+  artifacts,
+  buffers,
+}) => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof PostTeamCompositionSchema>>({
@@ -80,7 +87,10 @@ const TeamCompositionRegisterForm: React.FC<
                 <Equipments weapons={weapons} artifacts={artifacts} />
               </TabsContent>
               <TabsContent value="buff">
-                <Buffs passiveTalents={character.PassiveTalents} />
+                <Buffs
+                  passiveTalents={character.PassiveTalents}
+                  buffers={buffers}
+                />
               </TabsContent>
             </Tabs>
           </div>
