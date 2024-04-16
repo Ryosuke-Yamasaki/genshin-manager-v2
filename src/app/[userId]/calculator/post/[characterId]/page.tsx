@@ -1,5 +1,8 @@
 import { GetArtifacters } from "@/actions/getArtifacters";
+import { GetBuffArtifacts } from "@/actions/getBuffArtifacts";
 import { GetBuffCharacters } from "@/actions/getBuffCharacters";
+import { GetBuffElementalResonances } from "@/actions/getBuffElementalResonances";
+import { GetBuffWeapons } from "@/actions/getBuffWeapons";
 import { GetCharacterById } from "@/actions/getCharacterById";
 import { GetCharacterImageUrls } from "@/actions/getCharacterImageUrls";
 import { GetLevels } from "@/actions/getLevels";
@@ -17,6 +20,9 @@ const TeamCompositionPage = async ({
   const weapons = await GetWeaponsByTypeId(character.weaponTypeId.toString());
   const artifacts = await GetArtifacters(params.userId);
   const buffCharacters = await GetBuffCharacters();
+  const buffWeapons = await GetBuffWeapons();
+  const buffArtifacts = await GetBuffArtifacts();
+  const buffElementalResonances = await GetBuffElementalResonances();
 
   return (
     <div className="space-y-4">
@@ -27,6 +33,9 @@ const TeamCompositionPage = async ({
         weapons={weapons}
         artifacts={artifacts}
         buffers={buffCharacters}
+        buffWeapons={buffWeapons}
+        buffArtifacts={buffArtifacts}
+        buffElementalResonances={buffElementalResonances}
       />
       <div>
         <div>Stats</div>

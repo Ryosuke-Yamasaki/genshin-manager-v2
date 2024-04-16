@@ -40,6 +40,7 @@ const PostTeamCompositionSchema = z.object({
     characters: z.array(z.string()),
     weapons: z.array(z.string()),
     artifacts: z.array(z.string()),
+    elementalResonances: z.array(z.string()),
   }),
 });
 

@@ -237,9 +237,33 @@ interface WeaponImageUrl {
   url: string;
 }
 
+interface WeaponRefinement {
+  id: number;
+  weaponId: number;
+  rank: number;
+  title: string;
+  description: string;
+}
+
 interface BuffCharacter {
   id: number;
   characterId: number;
+  title: string;
+  description: string;
+}
+
+interface BuffWeapon {
+  weaponId: number;
+  series: string | null;
+}
+
+interface BuffArtifact {
+  artifactSetId: number;
+  needCount: number;
+}
+
+interface BuffElementalResonance {
+  id: number;
   title: string;
   description: string;
 }
@@ -254,6 +278,17 @@ interface TeamCompositionRegisterFormProps {
     BuffCharacters: BuffCharacter[];
     CharacterImageUrls: CharacterImageUrl | null;
   }[];
+  buffWeapons: {
+    BuffWeapons: BuffWeapon | null;
+    WeaponImageUrls: WeaponImageUrl | null;
+    WeaponRefinements: WeaponRefinement[];
+  }[];
+  buffArtifacts: {
+    fourPieceBonuses: string;
+    BuffArtifacts: BuffArtifact | null;
+    Artifacts: { ArtifactIcons: ArtifactIcons | null }[];
+  }[];
+  buffElementalResonances: BuffElementalResonance[];
 }
 
 interface CharacterProps {
@@ -302,6 +337,17 @@ interface BuffsProps {
     BuffCharacters: BuffCharacter[];
     CharacterImageUrls: CharacterImageUrl | null;
   }[];
+  buffWeapons: {
+    BuffWeapons: BuffWeapon | null;
+    WeaponImageUrls: WeaponImageUrl | null;
+    WeaponRefinements: WeaponRefinement[];
+  }[];
+  buffArtifacts: {
+    fourPieceBonuses: string;
+    BuffArtifacts: BuffArtifact | null;
+    Artifacts: { ArtifactIcons: ArtifactIcons | null }[];
+  }[];
+  buffElementalResonances: BuffElementalResonance[];
 }
 
 interface SelectPassiveTalentBuffProps {
@@ -314,6 +360,28 @@ interface SelectCharacterBuffProps {
     CharacterImageUrls: CharacterImageUrl | null;
   }[];
 }
+
+interface SelectWeaponBuffProps {
+  buffWeapons: {
+    BuffWeapons: BuffWeapon | null;
+    WeaponImageUrls: WeaponImageUrl | null;
+    WeaponRefinements: WeaponRefinement[];
+  }[];
+}
+
+interface SelectArtifactBuffProps {
+  buffArtifacts: {
+    fourPieceBonuses: string;
+    BuffArtifacts: BuffArtifact | null;
+    Artifacts: { ArtifactIcons: ArtifactIcons | null }[];
+  }[];
+}
+
+interface SelectElementalResonanceBuffProps {
+  buffElementalResonances: BuffElementalResonance[];
+}
+
+interface EnemyProps {}
 
 export type {
   ArtifactTypes,
@@ -347,7 +415,11 @@ export type {
   PassiveTalent,
   Weapon,
   WeaponImageUrl,
+  WeaponRefinement,
   BuffCharacter,
+  BuffWeapon,
+  BuffArtifact,
+  BuffElementalResonance,
   TeamCompositionRegisterFormProps,
   CharacterProps,
   SelectLevelProps,
@@ -359,4 +431,8 @@ export type {
   BuffsProps,
   SelectPassiveTalentBuffProps,
   SelectCharacterBuffProps,
+  SelectWeaponBuffProps,
+  SelectArtifactBuffProps,
+  SelectElementalResonanceBuffProps,
+  EnemyProps,
 };

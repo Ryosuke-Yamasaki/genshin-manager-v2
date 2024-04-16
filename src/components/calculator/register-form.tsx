@@ -22,6 +22,9 @@ const TeamCompositionRegisterForm: React.FC<
   weapons,
   artifacts,
   buffers,
+  buffWeapons,
+  buffArtifacts,
+  buffElementalResonances,
 }) => {
   const [isPending, startTransition] = useTransition();
 
@@ -48,6 +51,7 @@ const TeamCompositionRegisterForm: React.FC<
         characters: [],
         weapons: [],
         artifacts: [],
+        elementalResonances: [],
       },
     },
   });
@@ -90,6 +94,9 @@ const TeamCompositionRegisterForm: React.FC<
                 <Buffs
                   passiveTalents={character.PassiveTalents}
                   buffers={buffers}
+                  buffWeapons={buffWeapons}
+                  buffArtifacts={buffArtifacts}
+                  buffElementalResonances={buffElementalResonances}
                 />
               </TabsContent>
             </Tabs>

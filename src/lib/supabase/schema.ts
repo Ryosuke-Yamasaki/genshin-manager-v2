@@ -261,6 +261,29 @@ export type Database = {
         }
         Relationships: []
       }
+      BuffArtifacts: {
+        Row: {
+          artifactSetId: number
+          needCount: number
+        }
+        Insert: {
+          artifactSetId?: number
+          needCount: number
+        }
+        Update: {
+          artifactSetId?: number
+          needCount?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_BuffArtifacts_artifactSetId_fkey"
+            columns: ["artifactSetId"]
+            isOneToOne: true
+            referencedRelation: "ArtifactSets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       BuffCharacters: {
         Row: {
           characterId: number
@@ -286,6 +309,47 @@ export type Database = {
             columns: ["characterId"]
             isOneToOne: false
             referencedRelation: "Characters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      BuffElementalResonances: {
+        Row: {
+          description: string
+          id: number
+          title: string
+        }
+        Insert: {
+          description: string
+          id?: number
+          title: string
+        }
+        Update: {
+          description?: string
+          id?: number
+          title?: string
+        }
+        Relationships: []
+      }
+      BuffWeapons: {
+        Row: {
+          series: string | null
+          weaponId: number
+        }
+        Insert: {
+          series?: string | null
+          weaponId?: number
+        }
+        Update: {
+          series?: string | null
+          weaponId?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_BuffWeapons_weaponId_fkey"
+            columns: ["weaponId"]
+            isOneToOne: true
+            referencedRelation: "Weapons"
             referencedColumns: ["id"]
           },
         ]
@@ -2645,6 +2709,38 @@ export type Database = {
             foreignKeyName: "public_WeaponImageUrls_weaponId_fkey"
             columns: ["weaponId"]
             isOneToOne: true
+            referencedRelation: "Weapons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      WeaponRefinements: {
+        Row: {
+          description: string
+          id: number
+          rank: number
+          title: string
+          weaponId: number
+        }
+        Insert: {
+          description: string
+          id?: number
+          rank: number
+          title: string
+          weaponId: number
+        }
+        Update: {
+          description?: string
+          id?: number
+          rank?: number
+          title?: string
+          weaponId?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_WeaponRefinements_weaponId_fkey"
+            columns: ["weaponId"]
+            isOneToOne: false
             referencedRelation: "Weapons"
             referencedColumns: ["id"]
           },
