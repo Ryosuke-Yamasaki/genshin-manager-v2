@@ -42,6 +42,8 @@ const PostTeamCompositionSchema = z.object({
     artifacts: z.array(z.string()),
     elementalResonances: z.array(z.string()),
   }),
+  enemyLevel: z.string(),
+  resistance: z.array(z.object({ element: z.string(), value: z.string() })),
 });
 
 export { PostArtifacterSchema, ArtifacterSchema, PostTeamCompositionSchema };

@@ -381,8 +381,6 @@ interface SelectElementalResonanceBuffProps {
   buffElementalResonances: BuffElementalResonance[];
 }
 
-interface EnemyProps {}
-
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -434,5 +432,4 @@ export type {
   SelectWeaponBuffProps,
   SelectArtifactBuffProps,
   SelectElementalResonanceBuffProps,
-  EnemyProps,
 };

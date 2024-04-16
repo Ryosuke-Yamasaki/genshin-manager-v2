@@ -33,7 +33,7 @@ const TeamCompositionRegisterForm: React.FC<
     defaultValues: {
       name: character.name,
       characterId: character.id.toString(),
-      characterLevelId: "",
+      characterLevelId: "96",
       normalAttackLevel: "8",
       elementalSkillLevel: "8",
       elementalBurstLevel: "8",
@@ -53,6 +53,17 @@ const TeamCompositionRegisterForm: React.FC<
         artifacts: [],
         elementalResonances: [],
       },
+      enemyLevel: "90",
+      resistance: [
+        { element: "pyro", value: "10" },
+        { element: "hydro", value: "10" },
+        { element: "cryo", value: "10" },
+        { element: "electro", value: "10" },
+        { element: "anemo", value: "10" },
+        { element: "geo", value: "10" },
+        { element: "dendro", value: "10" },
+        { element: "physical", value: "10" },
+      ],
     },
   });
 
