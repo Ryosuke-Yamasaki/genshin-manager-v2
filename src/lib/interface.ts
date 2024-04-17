@@ -118,6 +118,7 @@ interface Regions {
 }
 
 interface Character {
+  [K: string]: any;
   id: number;
   name: string;
   weaponTypeId: number;
@@ -229,7 +230,13 @@ interface Weapon {
   star: number;
   baseAttackId: number;
   subStatId: number;
+  subStatValue: number;
   WeaponImageUrls: WeaponImageUrl;
+  WeaponTypes: WeaponTypes;
+  Stats: Stats;
+  WeaponBaseAttacks: WeaponBaseAttacks;
+  WeaponRefinements: WeaponRefinement[];
+  WeaponSubStats: WeaponSubStats;
 }
 
 interface WeaponImageUrl {
@@ -243,6 +250,14 @@ interface WeaponRefinement {
   rank: number;
   title: string;
   description: string;
+}
+
+interface WeaponBaseAttacks {
+  [K: string]: number;
+}
+
+interface WeaponSubStats {
+  [K: string]: number;
 }
 
 interface BuffCharacter {
@@ -289,6 +304,7 @@ interface TeamCompositionRegisterFormProps {
     Artifacts: { ArtifactIcons: ArtifactIcons | null }[];
   }[];
   buffElementalResonances: BuffElementalResonance[];
+  stats: Stats[];
 }
 
 interface CharacterProps {
@@ -321,6 +337,7 @@ interface SelectCharacterProps {
 interface EquipmentsProps {
   weapons: Weapon[];
   artifacts: Artifacter[];
+  levels: Levels[];
 }
 
 interface SelectEquipmentWeapperProps {
@@ -381,6 +398,21 @@ interface SelectElementalResonanceBuffProps {
   buffElementalResonances: BuffElementalResonance[];
 }
 
+interface BaseStatsProps {
+  characterStats: {
+    statId: number;
+    label: string | undefined;
+    value: number;
+  }[];
+}
+
+interface WeaponDetailsProps {
+  weapon: Weapon;
+  levels: Levels[];
+}
+
+interface SelectRefinementProps {}
+
 export type {
   ArtifactTypes,
   ArtifactSets,
@@ -414,6 +446,8 @@ export type {
   Weapon,
   WeaponImageUrl,
   WeaponRefinement,
+  WeaponBaseAttacks,
+  WeaponSubStats,
   BuffCharacter,
   BuffWeapon,
   BuffArtifact,
@@ -432,4 +466,7 @@ export type {
   SelectWeaponBuffProps,
   SelectArtifactBuffProps,
   SelectElementalResonanceBuffProps,
+  BaseStatsProps,
+  WeaponDetailsProps,
+  SelectRefinementProps,
 };

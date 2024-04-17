@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
+import { CheckIcon } from "@radix-ui/react-icons";
 import { useFormContext } from "react-hook-form";
 
 const SelectLevel: React.FC<SelectLevelProps> = ({ levels, formName }) => {
@@ -30,10 +30,10 @@ const SelectLevel: React.FC<SelectLevelProps> = ({ levels, formName }) => {
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
-                  variant="outline"
+                  size="free"
                   role="combobox"
                   className={cn(
-                    "w-fit h-fit py-1 px-2 justify-between",
+                    "rounded-sm",
                     !field.value && "text-muted-foreground"
                   )}
                 >
@@ -42,7 +42,7 @@ const SelectLevel: React.FC<SelectLevelProps> = ({ levels, formName }) => {
                         (level) => level.id.toString() === field.value
                       )?.valueText
                     : "level"}
-                  <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  /90
                 </Button>
               </FormControl>
             </PopoverTrigger>
@@ -56,7 +56,7 @@ const SelectLevel: React.FC<SelectLevelProps> = ({ levels, formName }) => {
                       value={level.valueText}
                       key={level.id}
                       onSelect={() => {
-                        setValue("characterLevelId", level.id.toString());
+                        setValue(formName, level.id.toString());
                       }}
                       className="justify-center py-1"
                     >

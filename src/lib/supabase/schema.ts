@@ -2754,6 +2754,7 @@ export type Database = {
           name: string
           star: number
           subStatId: number
+          subStatValue: number
           weaponTypeId: number
         }
         Insert: {
@@ -2763,6 +2764,7 @@ export type Database = {
           name: string
           star: number
           subStatId: number
+          subStatValue: number
           weaponTypeId: number
         }
         Update: {
@@ -2772,6 +2774,7 @@ export type Database = {
           name?: string
           star?: number
           subStatId?: number
+          subStatValue?: number
           weaponTypeId?: number
         }
         Relationships: [
@@ -2783,10 +2786,17 @@ export type Database = {
             referencedColumns: ["baseAttackId"]
           },
           {
-            foreignKeyName: "public_weapons_subStatId_fkey"
+            foreignKeyName: "public_Weapons_subStatId_fkey"
             columns: ["subStatId"]
             isOneToOne: false
             referencedRelation: "Stats"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_Weapons_subStatValue_fkey"
+            columns: ["subStatValue"]
+            isOneToOne: false
+            referencedRelation: "WeaponSubStats"
             referencedColumns: ["id"]
           },
           {
@@ -2794,6 +2804,327 @@ export type Database = {
             columns: ["weaponTypeId"]
             isOneToOne: false
             referencedRelation: "WeaponTypes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      WeaponSubStats: {
+        Row: {
+          baseAttackId: number
+          id: number
+          level1_20: number
+          level10_20: number
+          level11_20: number
+          level12_20: number
+          level13_20: number
+          level14_20: number
+          level15_20: number
+          level16_20: number
+          level17_20: number
+          level18_20: number
+          level19_20: number
+          level2_20: number
+          level20_20: number
+          level20_40: number
+          level21_40: number
+          level22_40: number
+          level23_40: number
+          level24_40: number
+          level25_40: number
+          level26_40: number
+          level27_40: number
+          level28_40: number
+          level29_40: number
+          level3_20: number
+          level30_40: number
+          level31_40: number
+          level32_40: number
+          level33_40: number
+          level34_40: number
+          level35_40: number
+          level36_40: number
+          level37_40: number
+          level38_40: number
+          level39_40: number
+          level4_20: number
+          level40_40: number
+          level40_50: number
+          level41_50: number
+          level42_50: number
+          level43_50: number
+          level44_50: number
+          level45_50: number
+          level46_50: number
+          level47_50: number
+          level48_50: number
+          level49_50: number
+          level5_20: number
+          level50_50: number
+          level50_60: number
+          level51_60: number
+          level52_60: number
+          level53_60: number
+          level54_60: number
+          level55_60: number
+          level56_60: number
+          level57_60: number
+          level58_60: number
+          level59_60: number
+          level6_20: number
+          level60_60: number
+          level60_70: number
+          level61_70: number
+          level62_70: number
+          level63_70: number
+          level64_70: number
+          level65_70: number
+          level66_70: number
+          level67_70: number
+          level68_70: number
+          level69_70: number
+          level7_20: number
+          level70_70: number
+          level70_80: number
+          level71_80: number
+          level72_80: number
+          level73_80: number
+          level74_80: number
+          level75_80: number
+          level76_80: number
+          level77_80: number
+          level78_80: number
+          level79_80: number
+          level8_20: number
+          level80_80: number
+          level80_90: number
+          level81_90: number
+          level82_90: number
+          level83_90: number
+          level84_90: number
+          level85_90: number
+          level86_90: number
+          level87_90: number
+          level88_90: number
+          level89_90: number
+          level9_20: number
+          level90_90: number
+          statId: number
+        }
+        Insert: {
+          baseAttackId: number
+          id: number
+          level1_20: number
+          level10_20: number
+          level11_20: number
+          level12_20: number
+          level13_20: number
+          level14_20: number
+          level15_20: number
+          level16_20: number
+          level17_20: number
+          level18_20: number
+          level19_20: number
+          level2_20: number
+          level20_20: number
+          level20_40: number
+          level21_40: number
+          level22_40: number
+          level23_40: number
+          level24_40: number
+          level25_40: number
+          level26_40: number
+          level27_40: number
+          level28_40: number
+          level29_40: number
+          level3_20: number
+          level30_40: number
+          level31_40: number
+          level32_40: number
+          level33_40: number
+          level34_40: number
+          level35_40: number
+          level36_40: number
+          level37_40: number
+          level38_40: number
+          level39_40: number
+          level4_20: number
+          level40_40: number
+          level40_50: number
+          level41_50: number
+          level42_50: number
+          level43_50: number
+          level44_50: number
+          level45_50: number
+          level46_50: number
+          level47_50: number
+          level48_50: number
+          level49_50: number
+          level5_20: number
+          level50_50: number
+          level50_60: number
+          level51_60: number
+          level52_60: number
+          level53_60: number
+          level54_60: number
+          level55_60: number
+          level56_60: number
+          level57_60: number
+          level58_60: number
+          level59_60: number
+          level6_20: number
+          level60_60: number
+          level60_70: number
+          level61_70: number
+          level62_70: number
+          level63_70: number
+          level64_70: number
+          level65_70: number
+          level66_70: number
+          level67_70: number
+          level68_70: number
+          level69_70: number
+          level7_20: number
+          level70_70: number
+          level70_80: number
+          level71_80: number
+          level72_80: number
+          level73_80: number
+          level74_80: number
+          level75_80: number
+          level76_80: number
+          level77_80: number
+          level78_80: number
+          level79_80: number
+          level8_20: number
+          level80_80: number
+          level80_90: number
+          level81_90: number
+          level82_90: number
+          level83_90: number
+          level84_90: number
+          level85_90: number
+          level86_90: number
+          level87_90: number
+          level88_90: number
+          level89_90: number
+          level9_20: number
+          level90_90: number
+          statId: number
+        }
+        Update: {
+          baseAttackId?: number
+          id?: number
+          level1_20?: number
+          level10_20?: number
+          level11_20?: number
+          level12_20?: number
+          level13_20?: number
+          level14_20?: number
+          level15_20?: number
+          level16_20?: number
+          level17_20?: number
+          level18_20?: number
+          level19_20?: number
+          level2_20?: number
+          level20_20?: number
+          level20_40?: number
+          level21_40?: number
+          level22_40?: number
+          level23_40?: number
+          level24_40?: number
+          level25_40?: number
+          level26_40?: number
+          level27_40?: number
+          level28_40?: number
+          level29_40?: number
+          level3_20?: number
+          level30_40?: number
+          level31_40?: number
+          level32_40?: number
+          level33_40?: number
+          level34_40?: number
+          level35_40?: number
+          level36_40?: number
+          level37_40?: number
+          level38_40?: number
+          level39_40?: number
+          level4_20?: number
+          level40_40?: number
+          level40_50?: number
+          level41_50?: number
+          level42_50?: number
+          level43_50?: number
+          level44_50?: number
+          level45_50?: number
+          level46_50?: number
+          level47_50?: number
+          level48_50?: number
+          level49_50?: number
+          level5_20?: number
+          level50_50?: number
+          level50_60?: number
+          level51_60?: number
+          level52_60?: number
+          level53_60?: number
+          level54_60?: number
+          level55_60?: number
+          level56_60?: number
+          level57_60?: number
+          level58_60?: number
+          level59_60?: number
+          level6_20?: number
+          level60_60?: number
+          level60_70?: number
+          level61_70?: number
+          level62_70?: number
+          level63_70?: number
+          level64_70?: number
+          level65_70?: number
+          level66_70?: number
+          level67_70?: number
+          level68_70?: number
+          level69_70?: number
+          level7_20?: number
+          level70_70?: number
+          level70_80?: number
+          level71_80?: number
+          level72_80?: number
+          level73_80?: number
+          level74_80?: number
+          level75_80?: number
+          level76_80?: number
+          level77_80?: number
+          level78_80?: number
+          level79_80?: number
+          level8_20?: number
+          level80_80?: number
+          level80_90?: number
+          level81_90?: number
+          level82_90?: number
+          level83_90?: number
+          level84_90?: number
+          level85_90?: number
+          level86_90?: number
+          level87_90?: number
+          level88_90?: number
+          level89_90?: number
+          level9_20?: number
+          level90_90?: number
+          statId?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_WeaponSubStats_baseAttackId_fkey"
+            columns: ["baseAttackId"]
+            isOneToOne: false
+            referencedRelation: "WeaponBaseAttacks"
+            referencedColumns: ["baseAttackId"]
+          },
+          {
+            foreignKeyName: "public_WeaponSubStats_statId_fkey"
+            columns: ["statId"]
+            isOneToOne: false
+            referencedRelation: "Stats"
             referencedColumns: ["id"]
           },
         ]

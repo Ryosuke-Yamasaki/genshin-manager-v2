@@ -3,8 +3,13 @@ import SelectEquipmentWeapper from "./select-equipment-weapper";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useFormContext } from "react-hook-form";
+import WeaponDetails from "./weapon-details";
 
-const Equipments: React.FC<EquipmentsProps> = ({ weapons, artifacts }) => {
+const Equipments: React.FC<EquipmentsProps> = ({
+  weapons,
+  artifacts,
+  levels,
+}) => {
   const { setValue, watch } = useFormContext();
 
   const equipments = [
@@ -45,6 +50,10 @@ const Equipments: React.FC<EquipmentsProps> = ({ weapons, artifacts }) => {
     },
   ];
 
+  const weaponDetails = weapons.find(
+    (weapon) => weapon.id.toString() === watch("weaponId")
+  );
+
   return (
     <div className="flex space-x-2">
       <div className="flex flex-col border rounded h-fit self-center">
@@ -57,29 +66,34 @@ const Equipments: React.FC<EquipmentsProps> = ({ weapons, artifacts }) => {
               ?.WeaponImageUrls.url || "/Icon_Inventory_Weapons.webp"
           }
         >
-          <div className="grid grid-cols-6 gap-2">
-            {weapons.map((weapon) => (
-              <Button
-                variant="outline"
-                size="icon"
-                key={weapon.id}
-                className="h-20 w-20"
-                type="button"
-                onClick={() => {
-                  setValue("weaponId", weapon.id.toString());
-                }}
-              >
-                <Avatar className="h-20 w-20">
-                  <AvatarImage src={weapon.WeaponImageUrls.url} />
-                  <AvatarFallback>
-                    {weapon.WeaponImageUrls.weaponId}
-                  </AvatarFallback>
-                </Avatar>
-              </Button>
-            ))}
+          <div className="flex items-center justify-center space-x-4">
+            <div className="grid grid-cols-6 gap-2">
+              {weapons.map((weapon) => (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  key={weapon.id}
+                  className="h-20 w-20"
+                  type="button"
+                  onClick={() => {
+                    setValue("weaponId", weapon.id.toString());
+                  }}
+                >
+                  <Avatar className="h-20 w-20">
+                    <AvatarImage src={weapon.WeaponImageUrls.url} />
+                    <AvatarFallback>
+                      {weapon.WeaponImageUrls.weaponId}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              ))}
+            </div>
+            {watch("weaponId") !== "" && (
+              <WeaponDetails weapon={weaponDetails!} levels={levels} />
+            )}
           </div>
         </SelectEquipmentWeapper>
-        {!(watch("weaponId") == "") && (
+        {watch("weaponId") !== "" && (
           <div className="text-sm text-center">武器</div>
         )}
       </div>
@@ -91,7 +105,7 @@ const Equipments: React.FC<EquipmentsProps> = ({ weapons, artifacts }) => {
           <SelectEquipmentWeapper
             formName={equip.formName}
             iconSize={
-              watch(equip.formName) == "" ? undefined : "h-20 w-20 border-b"
+              watch(equip.formName) === "" ? undefined : "h-20 w-20 border-b"
             }
             iconId={watch(equip.formName) || equip.label}
             iconUrl={
@@ -125,7 +139,7 @@ const Equipments: React.FC<EquipmentsProps> = ({ weapons, artifacts }) => {
                 ))}
             </div>
           </SelectEquipmentWeapper>
-          {!(watch(equip.formName) == "") && (
+          {!(watch(equip.formName) === "") && (
             <div className="text-sm text-center">{equip.title}</div>
           )}
         </div>

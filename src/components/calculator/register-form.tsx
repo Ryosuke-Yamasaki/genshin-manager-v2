@@ -4,7 +4,7 @@ import { TeamCompositionRegisterFormProps } from "@/lib/interface";
 import { Form } from "../ui/form";
 import Character from "./character";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { number, z } from "zod";
 import { PostTeamCompositionSchema } from "@/lib/zodschema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
@@ -25,6 +25,7 @@ const TeamCompositionRegisterForm: React.FC<
   buffWeapons,
   buffArtifacts,
   buffElementalResonances,
+  stats,
 }) => {
   const [isPending, startTransition] = useTransition();
 
@@ -39,8 +40,8 @@ const TeamCompositionRegisterForm: React.FC<
       elementalBurstLevel: "8",
       constellationRank: "0",
       weaponId: "",
-      weaponLevelId: "",
-      refinementRank: "",
+      weaponLevelId: "96",
+      refinementRank: "1",
       flowerId: "",
       plumeId: "",
       sandId: "",
@@ -72,9 +73,49 @@ const TeamCompositionRegisterForm: React.FC<
     console.log(values);
   };
 
+  const weapon = weapons.find(
+    (weapon) => weapon.id.toString() === form.watch("weaponId")
+  );
+
+  const weaponBaseStats: { [K: string]: number | undefined } = {
+    baseAttack:
+      weapon?.WeaponBaseAttacks[
+        levels.find(
+          (level) => level.id.toString() === form.watch("weaponLevelId")
+        )?.value!
+      ],
+  };
+
+  const characterBaseStats = {
+    baseHp:
+      character.CharacterBaseHps[
+        levels.find(
+          (level) => level.id.toString() === form.watch("characterLevelId")
+        )?.value!
+      ],
+    baseAttack:
+      character.CharacterBaseAttacks[
+        levels.find(
+          (level) => level.id.toString() === form.watch("characterLevelId")
+        )?.value!
+      ],
+    baseDefense:
+      character.CharacterBaseDefenses[
+        levels.find(
+          (level) => level.id.toString() === form.watch("characterLevelId")
+        )?.value!
+      ],
+    elementalMastery: 0,
+    energyRecharge: 1,
+    criticalRate: 0.05,
+    criticalDmg: 0.5,
+  };
+
+  console.log(characterBaseStats);
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <Button
           variant="outline"
           size="free"
@@ -99,7 +140,11 @@ const TeamCompositionRegisterForm: React.FC<
                 <TabsTrigger value="buff">バフ</TabsTrigger>
               </TabsList>
               <TabsContent value="equip">
-                <Equipments weapons={weapons} artifacts={artifacts} />
+                <Equipments
+                  weapons={weapons}
+                  artifacts={artifacts}
+                  levels={levels}
+                />
               </TabsContent>
               <TabsContent value="buff">
                 <Buffs
@@ -112,6 +157,25 @@ const TeamCompositionRegisterForm: React.FC<
               </TabsContent>
             </Tabs>
           </div>
+        </div>
+        <div className="flex space-x-4">
+          <div>
+            Stats
+            <div>hp</div>
+            <div>atk</div>
+            <div>def</div>
+            <div>em</div>
+            <div>er</div>
+            <div>cr</div>
+            <div>cd</div>
+          </div>
+          <div>Details</div>
+        </div>
+        <div>
+          damages
+          <div>NA</div>
+          <div>ES</div>
+          <div>EB</div>
         </div>
       </form>
     </Form>

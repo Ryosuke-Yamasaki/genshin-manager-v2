@@ -7,7 +7,9 @@ export const GetWeaponsByTypeId = async (id: string) => {
 
   const { data, error } = await supabase
     .from("Weapons")
-    .select("*,WeaponImageUrls!inner(*)")
+    .select(
+      "*,WeaponImageUrls!inner(*),WeaponTypes!inner(*),Stats!inner(*),WeaponBaseAttacks(*),WeaponRefinements(*),WeaponSubStats(*)"
+    )
     .eq("weaponTypeId", id);
 
   if (error) throw console.log(error);
