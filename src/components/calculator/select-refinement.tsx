@@ -1,4 +1,3 @@
-import { SelectRefinementProps } from "@/lib/interface";
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
 import {
   Select,
@@ -12,7 +11,7 @@ import { z } from "zod";
 import { PostTeamCompositionSchema } from "@/lib/zodschema";
 import { Badge } from "../ui/badge";
 
-const SelectRefinement: React.FC<SelectRefinementProps> = () => {
+const SelectRefinement = () => {
   const { control } =
     useFormContext<z.infer<typeof PostTeamCompositionSchema>>();
 

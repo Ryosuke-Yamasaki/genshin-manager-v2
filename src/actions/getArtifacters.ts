@@ -8,7 +8,7 @@ export const GetArtifacters = async (id: string) => {
   const { data, error } = await supabase
     .from("Artifacters")
     .select(
-      "*,ArtifacterSubOptions(*,Stats(*)),ArtifactTypes(*),ArtifactSets(*),Stats(*),ArtifactIcons!inner(*)"
+      "*,ArtifacterSubOptions(*,Stats(*)),ArtifactTypes(*),ArtifactSets(*,ArtifactSetBonusValues(*)),Stats(*),ArtifactIcons!inner(*),ArtifactMainStats(*),Artifacts(*)"
     )
     .eq("userId", id);
 

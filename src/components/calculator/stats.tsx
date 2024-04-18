@@ -1,19 +1,20 @@
 import { BaseStatsProps } from "@/lib/interface";
 import { Table, TableBody, TableCell, TableRow } from "../ui/table";
+import { FormatPercent } from "@/lib/utils";
 
-const BaseStats: React.FC<BaseStatsProps> = ({ characterStats }) => {
-  const baseStats = {
-    attack: { value: 0, label: "" },
-  };
-
+const BaseStats: React.FC<BaseStatsProps> = ({ contexts }) => {
   return (
     <div className="border rounded-lg">
       <Table>
         <TableBody>
-          {characterStats.map((stat) => (
-            <TableRow key={stat.label}>
-              <TableCell>{stat.label}</TableCell>
-              <TableCell>{stat.value}</TableCell>
+          {contexts.map((context) => (
+            <TableRow key={context.label}>
+              <TableCell>{context.label}</TableCell>
+              <TableCell>
+                {context.format
+                  ? FormatPercent(context.value)
+                  : context.value.toFixed(0)}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

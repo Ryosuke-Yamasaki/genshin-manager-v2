@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useFormContext } from "react-hook-form";
 import WeaponDetails from "./weapon-details";
+import ArtifactDetails from "./artifact-details";
 
 const Equipments: React.FC<EquipmentsProps> = ({
   weapons,
@@ -115,28 +116,39 @@ const Equipments: React.FC<EquipmentsProps> = ({
             }
             key={equip.typeId}
           >
-            <div className="grid grid-cols-6 gap-2">
-              {artifacts
-                .filter((artifact) => artifact.typeId === equip.typeId)
-                .map((artifact) => (
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    key={artifact.id}
-                    className="h-20 w-20"
-                    type="button"
-                    onClick={() => {
-                      setValue(equip.formName, artifact.id);
-                    }}
-                  >
-                    <Avatar className="h-20 w-20">
-                      <AvatarImage src={artifact.ArtifactIcons.url} />
-                      <AvatarFallback>
-                        {artifact.ArtifactIcons.artifactId}
-                      </AvatarFallback>
-                    </Avatar>
-                  </Button>
-                ))}
+            <div className="flex items-center justify-center space-x-4">
+              <div className="grid grid-cols-6 gap-2">
+                {artifacts
+                  .filter((artifact) => artifact.typeId === equip.typeId)
+                  .map((artifact) => (
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      key={artifact.id}
+                      className="h-20 w-20"
+                      type="button"
+                      onClick={() => {
+                        setValue(equip.formName, artifact.id);
+                      }}
+                    >
+                      <Avatar className="h-20 w-20">
+                        <AvatarImage src={artifact.ArtifactIcons.url} />
+                        <AvatarFallback>
+                          {artifact.ArtifactIcons.artifactId}
+                        </AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  ))}
+              </div>
+              {watch(equip.formName) !== "" && (
+                <ArtifactDetails
+                  artifact={
+                    artifacts.find(
+                      (artifact) => artifact.id === watch(equip.formName)
+                    )!
+                  }
+                />
+              )}
             </div>
           </SelectEquipmentWeapper>
           {!(watch(equip.formName) === "") && (

@@ -222,6 +222,45 @@ export type Database = {
           },
         ]
       }
+      ArtifactSetBonusValues: {
+        Row: {
+          artifactSetId: number
+          id: number
+          needCount: number
+          statId: number
+          value: number
+        }
+        Insert: {
+          artifactSetId: number
+          id?: number
+          needCount: number
+          statId: number
+          value: number
+        }
+        Update: {
+          artifactSetId?: number
+          id?: number
+          needCount?: number
+          statId?: number
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_ArtifactSetBonusValues_artifactSetId_fkey"
+            columns: ["artifactSetId"]
+            isOneToOne: false
+            referencedRelation: "ArtifactSets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_ArtifactSetBonusValues_statId_fkey"
+            columns: ["statId"]
+            isOneToOne: false
+            referencedRelation: "Stats"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ArtifactSets: {
         Row: {
           fourPieceBonuses: string

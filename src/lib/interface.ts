@@ -9,6 +9,15 @@ interface ArtifactSets {
   name: string;
   twoPieceBonuses: string;
   fourPieceBonuses: string;
+  ArtifactSetBonusValues: ArtifactSetBonusValues[];
+}
+
+interface ArtifactSetBonusValues {
+  id: number;
+  artifactSetId: number;
+  needCount: number;
+  statId: number;
+  value: number;
 }
 
 interface ArtifactMainStats {
@@ -86,10 +95,20 @@ interface Artifacter {
   setId: number;
   mainStatId: number;
   createdAt: string;
-  ArtifacterSubOptions: { statId: number; value: number }[];
+  ArtifacterSubOptions: ArtifacterSubOption[];
   ArtifactTypes: ArtifactTypes;
   ArtifactSets: ArtifactSets;
   ArtifactIcons: ArtifactIcons;
+  Stats: Stats;
+  ArtifactMainStats: ArtifactMainStats;
+  Artifacts: Artifacts;
+}
+
+interface ArtifacterSubOption {
+  id: string;
+  artifacterId: string;
+  statId: number;
+  value: number;
   Stats: Stats;
 }
 
@@ -147,7 +166,7 @@ interface Character {
     [K: string]: number;
   };
   CharacterAscensionBonusStats: {
-    [K: string]: number | Stats;
+    [K: string]: any;
     Stats: Stats;
   };
   Constellations: Constellation[];
@@ -399,10 +418,10 @@ interface SelectElementalResonanceBuffProps {
 }
 
 interface BaseStatsProps {
-  characterStats: {
-    statId: number;
-    label: string | undefined;
+  contexts: {
+    label: string;
     value: number;
+    format: boolean;
   }[];
 }
 
@@ -411,11 +430,138 @@ interface WeaponDetailsProps {
   levels: Levels[];
 }
 
-interface SelectRefinementProps {}
+interface ArtifactDetailsProps {
+  artifact: Artifacter;
+}
+
+interface CharacterAllStats {
+  [K: string]: number;
+  hp: number;
+  attack: number;
+  defense: number;
+  elementalMastery: number;
+  energyRecharge: number;
+  criticalRate: number;
+  normalAttackCriticalRate: number;
+  chargedAttackCriticalRate: number;
+  plungingAttackCriticalRate: number;
+  elementalSkillCriticalRate: number;
+  elementalBurstCriticalRate: number;
+  overloadedCriticalRate: number;
+  burningCriticalRate: number;
+  vaporizeCriticalRate: number;
+  meltCriticalRate: number;
+  superconductCriticalRate: number;
+  swirlCriticalRate: number;
+  electroChargedCriticalRate: number;
+  aggravateCriticalRate: number;
+  spreadCriticalRate: number;
+  bloomCriticalRate: number;
+  hyperbloomCriticalRate: number;
+  burgeonCriticalRate: number;
+  criticalDmg: number;
+  normalAttackCriticalDmg: number;
+  chargedAttackCriticalDmg: number;
+  plungingAttackCriticalDmg: number;
+  elementalSkillCriticalDmg: number;
+  elementalBurstCriticalDmg: number;
+  overloadedCriticalDmg: number;
+  burningCriticalDmg: number;
+  vaporizeCriticalDmg: number;
+  meltCriticalDmg: number;
+  superconductCriticalDmg: number;
+  swirlCriticalDmg: number;
+  electroChargedCriticalDmg: number;
+  aggravateCriticalDmg: number;
+  spreadCriticalDmg: number;
+  bloomCriticalDmg: number;
+  hyperbloomCriticalDmg: number;
+  burgeonCriticalDmg: number;
+  healingBonus: number;
+  incomingHealingBonus: number;
+  cdReduction: number;
+  shieldStrength: number;
+  dmgBonus: number;
+  normalAttackDmgBonus: number;
+  chargedAttackDmgBonus: number;
+  plungingAttackDmgBonus: number;
+  elementalSkillDmgBonus: number;
+  elementalBurstDmgBonus: number;
+  overloadedDmgBonus: number;
+  burningDmgBonus: number;
+  vaporizeDmgBonus: number;
+  meltDmgBonus: number;
+  superconductDmgBonus: number;
+  swirlDmgBonus: number;
+  electroChargedDmgBonus: number;
+  aggravateDmgBonus: number;
+  spreadDmgBonus: number;
+  bloomDmgBonus: number;
+  hyperbloomDmgBonus: number;
+  burgeonDmgBonus: number;
+  pyroDmgBonus: number;
+  hydroDmgBonus: number;
+  cryoDmgBonus: number;
+  electroDmgBonus: number;
+  anemoDmgBonus: number;
+  geoDmgBonus: number;
+  dendroDmgBonus: number;
+  physicalDmgBonus: number;
+  pyroSwirlDmgBonus: number;
+  hydroSwirlDmgBonus: number;
+  cryoSwirlDmgBonus: number;
+  electroSwirlDmgBonus: number;
+  allElementRes: number;
+  pyroRes: number;
+  hydroRes: number;
+  cryoRes: number;
+  electroRes: number;
+  anemoRes: number;
+  geoRes: number;
+  dendroRes: number;
+  physicalRes: number;
+  pyroResDown: number;
+  hydroResDown: number;
+  cryoResDown: number;
+  electroResDown: number;
+  anemoResDown: number;
+  geoResDown: number;
+  dendroResDown: number;
+  physicalResDown: number;
+  baseSpeed: number;
+  speedPercent: number;
+  elementalBurstCost: number;
+  normalAttackTalentMultiplier: number;
+  chargedAttackTalentMultiplier: number;
+  plungingAttackTalentMultiplier: number;
+  elementalSkillTalentMultiplier: number;
+  elementalBurstTalentMultiplier: number;
+  normalAttackTalentMultiplierPercent: number;
+  chargedAttackTalentMultiplierPercent: number;
+  plungingAttackTalentMultiplierPercent: number;
+  elementalSkillTalentMultiplierPercent: number;
+  elementalBurstTalentMultiplierPercent: number;
+  talentMultiplierFlat: number;
+  normalAttackTalentMultiplierFlat: number;
+  chargedAttackTalentMultiplierFlat: number;
+  plungingAttackTalentMultiplierFlat: number;
+  elementalSkillTalentMultiplierFlat: number;
+  elementalBurstTalentMultiplierFlat: number;
+  baseAttackSpeed: number;
+  attackSpeedPercent: number;
+  normalAttackAttackSpeedPercent: number;
+  chargedAttackAttackSpeedPercent: number;
+  defenseIgnoredPercent: number;
+  defenseReductionPercent: number;
+  normalAttackTalentLevel: number;
+  elementalSkillTalentLevel: number;
+  elementalBurstTalentLevel: number;
+}
 
 export type {
   ArtifactTypes,
   ArtifactSets,
+  ArtifactSetBonusValues,
   ArtifactMainStats,
   ArtifactIcons,
   Artifacts,
@@ -427,6 +573,7 @@ export type {
   SelectDialogProps,
   SubOptionFormProps,
   Artifacter,
+  ArtifacterSubOption,
   Visions,
   WeaponTypes,
   Genders,
@@ -468,5 +615,6 @@ export type {
   SelectElementalResonanceBuffProps,
   BaseStatsProps,
   WeaponDetailsProps,
-  SelectRefinementProps,
+  ArtifactDetailsProps,
+  CharacterAllStats,
 };
