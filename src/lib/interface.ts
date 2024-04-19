@@ -434,6 +434,8 @@ interface ArtifactDetailsProps {
   artifact: Artifacter;
 }
 
+interface StatDetailsProps {}
+
 interface CharacterAllStats {
   [K: string]: number;
   hp: number;
@@ -616,5 +618,6 @@ export type {
   BaseStatsProps,
   WeaponDetailsProps,
   ArtifactDetailsProps,
+  StatDetailsProps,
   CharacterAllStats,
 };

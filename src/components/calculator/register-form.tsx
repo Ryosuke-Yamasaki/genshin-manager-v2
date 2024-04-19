@@ -17,6 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Buffs from "./buffs";
 import { getActiveArtifactSetBonus, parameterCalculator } from "@/lib/utils";
 import BaseStats from "./stats";
+import StatDetails from "./stat-details";
 
 const TeamCompositionRegisterForm: React.FC<
   TeamCompositionRegisterFormProps
@@ -171,7 +172,17 @@ const TeamCompositionRegisterForm: React.FC<
     }
   });
 
-  const contexts = parameterCalculator(characterBaseStats, artifactStats);
+  const artifactSetStats = getActiveArtifactSetBonus(artifacts, artifactId);
+
+  const allStatsParams = [
+    ...characterBaseStats,
+    ...artifactStats,
+    ...artifactSetStats,
+  ];
+
+  const contexts = parameterCalculator(allStatsParams);
+
+  console.log(allStatsParams);
 
   const allStats: CharacterAllStats = {
     hp: contexts[0].value,
@@ -296,14 +307,6 @@ const TeamCompositionRegisterForm: React.FC<
     elementalBurstTalentLevel: 0,
   };
 
-  const artifactSetStats = getActiveArtifactSetBonus(artifacts, artifactId);
-
-  artifactSetStats
-    .filter((sub) => sub.needCount === 2)
-    .map(
-      (sub) => allStats[stats.find((stat) => stat.id == sub.statId)?.english!]
-    );
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -351,7 +354,7 @@ const TeamCompositionRegisterForm: React.FC<
         </div>
         <div className="flex space-x-4">
           <BaseStats contexts={contexts} />
-          <div>Details</div>
+          <StatDetails />
         </div>
         <div>
           damages

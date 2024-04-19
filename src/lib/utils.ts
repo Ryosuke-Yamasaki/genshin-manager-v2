@@ -69,13 +69,7 @@ const baseCalculator = (data: number[]) => {
   return data[0] * (1 + data[1]) + data[2];
 };
 
-const parameterCalculator = (
-  characterBaseStats: {
-    statId: number;
-    value: number;
-  }[],
-  artifacts: { statId: number; value: number }[]
-) => {
+const parameterCalculator = (stats: { statId: number; value: number }[]) => {
   const baseStats: {
     [K: string]: number[];
   } = {
@@ -92,26 +86,18 @@ const parameterCalculator = (
 
   baseStatsProps.map((prop) =>
     baseStats[prop.label].push(
-      characterBaseStats
+      stats
         .filter((stat) => stat.statId === Number(`${prop.value}00`))
         .map((stat) => stat.value)
         .reduce((a, b) => a + b, 0),
-      characterBaseStats
+      stats
         .filter((stat) => stat.statId === Number(`${prop.value}03`))
         .map((stat) => stat.value)
-        .reduce((a, b) => a + b, 0) +
-        artifacts
-          .filter((stat) => stat.statId === Number(`${prop.value}03`))
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0),
-      characterBaseStats
+        .reduce((a, b) => a + b, 0),
+      stats
         .filter((stat) => stat.statId === Number(`${prop.value}01`))
         .map((stat) => stat.value)
-        .reduce((a, b) => a + b, 0) +
-        artifacts
-          .filter((stat) => stat.statId === Number(`${prop.value}01`))
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0)
+        .reduce((a, b) => a + b, 0)
     )
   );
 
@@ -133,54 +119,34 @@ const parameterCalculator = (
     },
     {
       label: "元素熟知",
-      value:
-        characterBaseStats
-          .filter((stat) => stat.statId === 400)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0) +
-        artifacts
-          .filter((stat) => stat.statId === 400)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0),
+      value: stats
+        .filter((stat) => stat.statId === 400)
+        .map((stat) => stat.value)
+        .reduce((a, b) => a + b, 0),
       format: false,
     },
     {
       label: "元素チャージ効率",
-      value:
-        characterBaseStats
-          .filter((stat) => stat.statId === 500)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0) +
-        artifacts
-          .filter((stat) => stat.statId === 500)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0),
+      value: stats
+        .filter((stat) => stat.statId === 500)
+        .map((stat) => stat.value)
+        .reduce((a, b) => a + b, 0),
       format: true,
     },
     {
       label: "会心率",
-      value:
-        characterBaseStats
-          .filter((stat) => stat.statId === 600)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0) +
-        artifacts
-          .filter((stat) => stat.statId === 600)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0),
+      value: stats
+        .filter((stat) => stat.statId === 600)
+        .map((stat) => stat.value)
+        .reduce((a, b) => a + b, 0),
       format: true,
     },
     {
       label: "会心ダメージ",
-      value:
-        characterBaseStats
-          .filter((stat) => stat.statId === 700)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0) +
-        artifacts
-          .filter((stat) => stat.statId === 700)
-          .map((stat) => stat.value)
-          .reduce((a, b) => a + b, 0),
+      value: stats
+        .filter((stat) => stat.statId === 700)
+        .map((stat) => stat.value)
+        .reduce((a, b) => a + b, 0),
       format: true,
     },
   ];
