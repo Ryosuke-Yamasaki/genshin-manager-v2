@@ -7,7 +7,7 @@ import {
 import { Form } from "../ui/form";
 import Character from "./character";
 import { useForm } from "react-hook-form";
-import { number, z } from "zod";
+import { z } from "zod";
 import { PostTeamCompositionSchema } from "@/lib/zodschema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
@@ -47,7 +47,7 @@ const TeamCompositionRegisterForm: React.FC<
       constellationRank: "0",
       weaponId: "5502",
       weaponLevelId: "96",
-      refinementRank: "0",
+      refinementRank: "1",
       flowerId: "ffa81853-0e27-459d-95c7-5ffdf1058935",
       plumeId: "cd39b3db-c58b-4727-8f48-e3796ef53434",
       sandId: "f34284ae-16d8-4f8e-9c87-322eb7472119",
@@ -182,7 +182,14 @@ const TeamCompositionRegisterForm: React.FC<
 
   const contexts = parameterCalculator(allStatsParams);
 
-  console.log(allStatsParams);
+  contexts.push({
+    label: `${character.Visions.japanese}元素ダメージ`,
+    value: allStatsParams
+      .filter((stat) => stat.statId.toString() === `125${character.visionId}`)
+      .map((stat) => stat.value)
+      .reduce((a, b) => a + b, 0),
+    format: true,
+  });
 
   const allStats: CharacterAllStats = {
     hp: contexts[0].value,
@@ -354,7 +361,7 @@ const TeamCompositionRegisterForm: React.FC<
         </div>
         <div className="flex space-x-4">
           <BaseStats contexts={contexts} />
-          <StatDetails />
+          <StatDetails stats={allStatsParams} />
         </div>
         <div>
           damages

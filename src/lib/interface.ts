@@ -434,7 +434,9 @@ interface ArtifactDetailsProps {
   artifact: Artifacter;
 }
 
-interface StatDetailsProps {}
+interface StatDetailsProps {
+  stats: { statId: number; value: number }[];
+}
 
 interface CharacterAllStats {
   [K: string]: number;

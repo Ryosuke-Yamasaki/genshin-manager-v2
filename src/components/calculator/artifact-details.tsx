@@ -18,7 +18,11 @@ const ArtifactDetails: React.FC<ArtifactDetailsProps> = ({ artifact }) => {
             <div>{artifact.ArtifactTypes.japanese}</div>
             <div>
               <div className="text-sm">{artifact.Stats.text}</div>
-              <div className="text-2xl">{artifact.ArtifactMainStats.star5}</div>
+              <div className="text-2xl">
+                {IntStatId(artifact.mainStatId.toString())
+                  ? artifact.ArtifactMainStats.star5
+                  : FormatPercent(artifact.ArtifactMainStats.star5)}
+              </div>
             </div>
             <div className="flex">
               <StarFilledIcon color="#fecc32" />

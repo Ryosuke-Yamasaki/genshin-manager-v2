@@ -70,36 +70,7 @@ const baseCalculator = (data: number[]) => {
 };
 
 const parameterCalculator = (stats: { statId: number; value: number }[]) => {
-  const baseStats: {
-    [K: string]: number[];
-  } = {
-    hp: [],
-    atk: [],
-    def: [],
-  };
-
-  const baseStatsProps = [
-    { label: "hp", value: "1" },
-    { label: "atk", value: "2" },
-    { label: "def", value: "3" },
-  ];
-
-  baseStatsProps.map((prop) =>
-    baseStats[prop.label].push(
-      stats
-        .filter((stat) => stat.statId === Number(`${prop.value}00`))
-        .map((stat) => stat.value)
-        .reduce((a, b) => a + b, 0),
-      stats
-        .filter((stat) => stat.statId === Number(`${prop.value}03`))
-        .map((stat) => stat.value)
-        .reduce((a, b) => a + b, 0),
-      stats
-        .filter((stat) => stat.statId === Number(`${prop.value}01`))
-        .map((stat) => stat.value)
-        .reduce((a, b) => a + b, 0)
-    )
-  );
+  const baseStats = getBaseStats(stats);
 
   const contexts = [
     {
@@ -154,6 +125,41 @@ const parameterCalculator = (stats: { statId: number; value: number }[]) => {
   return contexts;
 };
 
+const getBaseStats = (stats: { statId: number; value: number }[]) => {
+  const baseStats: {
+    [K: string]: number[];
+  } = {
+    hp: [],
+    atk: [],
+    def: [],
+  };
+
+  const baseStatsProps = [
+    { label: "hp", value: "1" },
+    { label: "atk", value: "2" },
+    { label: "def", value: "3" },
+  ];
+
+  baseStatsProps.map((prop) =>
+    baseStats[prop.label].push(
+      stats
+        .filter((stat) => stat.statId === Number(`${prop.value}00`))
+        .map((stat) => stat.value)
+        .reduce((a, b) => a + b, 0),
+      stats
+        .filter((stat) => stat.statId === Number(`${prop.value}03`))
+        .map((stat) => stat.value)
+        .reduce((a, b) => a + b, 0),
+      stats
+        .filter((stat) => stat.statId === Number(`${prop.value}01`))
+        .map((stat) => stat.value)
+        .reduce((a, b) => a + b, 0)
+    )
+  );
+
+  return baseStats;
+};
+
 const getCharacterAllStats = () => {};
 
 export {
@@ -163,5 +169,6 @@ export {
   getActiveArtifactSetBonus,
   baseCalculator,
   parameterCalculator,
+  getBaseStats,
   getCharacterAllStats,
 };
